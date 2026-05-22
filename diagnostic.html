@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic AO — Aconia</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:         #0B0F1A;
+    --accent:      #1A4FFF;
+    --accent-dark: #0034CC;
+    --muted:       #6B7280;
+    --border:      #D6D0C4;
+    --green:       #00A878;
+    --orange:      #E87040;
+    --red:         #CC2B2B;
+    --paper:       #F5F2EC;
+    --card:        #FEFCF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent); }
+  .back-link {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: rgba(255,255,255,0.75); }
+
+  /* ── QUIZ CONTAINER ── */
+  .quiz-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 100px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap { margin-bottom: 48px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 10px;
+  }
+  .progress-track {
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.45s ease;
+  }
+
+  /* ── QUESTION BLOCKS ── */
+  .question-block { display: none; }
+  .question-block.active {
+    display: block;
+    animation: fadeUp 0.3s ease;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .q-question {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 36px;
+    line-height: 1.3;
+  }
+
+  /* ── OPTIONS ── */
+  .options-list { display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    width: 100%;
+    text-align: left;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.09);
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: rgba(255,255,255,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.97rem;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .option-btn:hover {
+    background: rgba(26,79,255,0.1);
+    border-color: rgba(26,79,255,0.5);
+    color: #fff;
+  }
+  .option-btn.selected {
+    background: rgba(26,79,255,0.16);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .opt-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.18);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .option-btn.selected .opt-check {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .option-btn.selected .opt-check::after { content: '✓'; }
+
+  /* ── CONTACT FORM ── */
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 7px; }
+  .form-field label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+  .form-field input {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.97rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-field input:focus { border-color: var(--accent); }
+  .form-field input::placeholder { color: rgba(255,255,255,0.2); }
+
+  /* ── NAV BUTTONS ── */
+  .quiz-nav { display: flex; justify-content: flex-end; margin-top: 32px; }
+  .btn-next {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 15px 34px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.97rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 18px rgba(26,79,255,0.3);
+  }
+  .btn-next:hover:not(:disabled) {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(26,79,255,0.4);
+  }
+  .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* ════════════════════════════
+     RÉSULTATS
+  ════════════════════════════ */
+  #results-screen { display: none; animation: fadeUp 0.4s ease; }
+
+  .results-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 100px;
+    text-align: center;
+  }
+
+  /* Score circle */
+  .score-circle-wrap {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .score-circle-wrap svg {
+    position: absolute;
+    top: 0; left: 0;
+    transform: rotate(-90deg);
+  }
+  .score-num-big {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .score-slash {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+  }
+
+  /* Profile badge */
+  .profile-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .badge-low  { background: rgba(204,43,43,0.15);  color: #FF6B6B; border: 1px solid rgba(204,43,43,0.35); }
+  .badge-mid  { background: rgba(232,112,64,0.15); color: #FBBF24; border: 1px solid rgba(232,112,64,0.35); }
+  .badge-high { background: rgba(0,168,120,0.15);  color: #34D399; border: 1px solid rgba(0,168,120,0.35); }
+
+  .result-headline { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin-bottom: 14px; }
+  .result-desc {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.97rem;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 48px;
+    line-height: 1.75;
+  }
+
+  /* Dimensions */
+  .block-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    text-align: left;
+    margin-bottom: 18px;
+  }
+  .dim-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 13px;
+    text-align: left;
+  }
+  .dim-name  { font-size: 0.87rem; color: rgba(255,255,255,0.65); min-width: 155px; }
+  .dim-track { flex: 1; height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+  .dim-fill  { height: 100%; border-radius: 3px; background: var(--accent); width: 0; transition: width 1s ease 0.2s; }
+  .dim-pts   { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.35); min-width: 52px; text-align: right; }
+
+  /* Recos */
+  .reco-list { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+  .reco-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .reco-arrow { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .reco-text  { font-size: 0.92rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
+
+  /* CTA box */
+  .cta-box {
+    background: rgba(26,79,255,0.1);
+    border: 1px solid rgba(26,79,255,0.25);
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-box h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 10px; }
+  .cta-box p  { color: rgba(255,255,255,0.5); font-size: 0.92rem; font-weight: 300; margin-bottom: 28px; line-height: 1.65; }
+  .btn-rdv {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(26,79,255,0.35);
+  }
+  .btn-rdv:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .btn-restart {
+    display: block;
+    margin-top: 16px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.82rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+  }
+  .btn-restart:hover { color: rgba(255,255,255,0.6); }
+
+  /* Spacer between blocks */
+  .section-gap { margin-bottom: 44px; }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 20px; }
+    .quiz-container, .results-wrap { padding: 40px 16px 80px; }
+    .dim-name { min-width: 110px; font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Aco<span>nia</span></a>
+  <a href="index.html" class="back-link">← Retour à l'accueil</a>
+</nav>
+
+<!-- ═══════════════════════════════════
+     QUIZ
+════════════════════════════════════ -->
+<div id="quiz-screen">
+  <div class="quiz-container">
+
+    <!-- Progression -->
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="step-label">Question 1 sur 8</span>
+        <span id="step-pct">0 %</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Q1 — Contexte (non noté) -->
+    <div class="question-block active" id="q-0">
+      <div class="q-label">Question 1 · Contexte</div>
+      <div class="q-question">Quelle est votre activité principale ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,0,0)"><span>Services / Conseil</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,0,0)"><span>Industrie / Fabrication</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,0,0)"><span>IT / Tech / SaaS</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,0,0)"><span>BTP / Travaux</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,0,0)"><span>Autre</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-0" onclick="goNext(0)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q2 — Volume -->
+    <div class="question-block" id="q-1">
+      <div class="q-label">Question 2 · Volume — 15 pts</div>
+      <div class="q-question">Combien d'appels d'offres traitez-vous par an ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,1,0)"><span>Moins de 5</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,1,5)"><span>Entre 5 et 15</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,1,10)"><span>Entre 15 et 40</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,1,15)"><span>Plus de 40</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-1" onclick="goNext(1)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q3 — Veille -->
+    <div class="question-block" id="q-2">
+      <div class="q-label">Question 3 · Veille — 15 pts</div>
+      <div class="q-question">Comment détectez-vous les appels d'offres qui vous correspondent ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,2,0)"><span>Au fil de l'eau / bouche à oreille</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,2,5)"><span>Plateformes (BOAMP, Marchés Publics…)</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,2,10)"><span>Outil de veille dédié</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,2,15)"><span>Veille + réseau + ciblage proactif</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-2" onclick="goNext(2)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q4 — GO/NOGO -->
+    <div class="question-block" id="q-3">
+      <div class="q-label">Question 4 · Sélection — 15 pts</div>
+      <div class="q-question">Avez-vous un processus formalisé pour décider si vous répondez à un AO (GO/NOGO) ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,3,0)"><span>Non, on répond à tout</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,3,5)"><span>Décision intuitive case par case</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,3,10)"><span>Critères informels partagés en équipe</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,3,15)"><span>Grille GO/NOGO structurée et validée</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-3" onclick="goNext(3)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q5 — Rédaction -->
+    <div class="question-block" id="q-4">
+      <div class="q-label">Question 5 · Rédaction — 20 pts</div>
+      <div class="q-question">Comment construisez-vous vos réponses aux appels d'offres ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,4,0)"><span>Modèles génériques adaptés à la marge</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,4,7)"><span>Personnalisation partielle des réponses</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,4,14)"><span>Offre structurée + approche différenciée</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,4,20)"><span>Process complet : analyse, différenciation, validation</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-4" onclick="goNext(4)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q6 — Taux de succès -->
+    <div class="question-block" id="q-5">
+      <div class="q-label">Question 6 · Taux de succès — 20 pts</div>
+      <div class="q-question">Quel est votre taux de succès actuel sur les AO auxquels vous répondez ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,5,0)"><span>Inférieur à 10 %</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,5,7)"><span>Entre 10 % et 25 %</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,5,14)"><span>Entre 25 % et 40 %</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,5,20)"><span>Plus de 40 %</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-5" onclick="goNext(5)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q7 — Pilotage -->
+    <div class="question-block" id="q-6">
+      <div class="q-label">Question 7 · Pilotage — 15 pts</div>
+      <div class="q-question">Avez-vous un suivi structuré de vos AO (pipeline, KPIs, retours d'expérience) ?</div>
+      <div class="options-list">
+        <button class="option-btn" onclick="selectOption(this,6,0)"><span>Aucun suivi formalisé</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,6,5)"><span>Tableau de bord basique</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,6,10)"><span>Suivi régulier + analyse des AO perdus</span><span class="opt-check"></span></button>
+        <button class="option-btn" onclick="selectOption(this,6,15)"><span>Pilotage complet + amélioration continue</span><span class="opt-check"></span></button>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-6" onclick="goNext(6)" disabled>Continuer →</button></div>
+    </div>
+
+    <!-- Q8 — Coordonnées -->
+    <div class="question-block" id="q-7">
+      <div class="q-label">Dernière étape · Vos coordonnées</div>
+      <div class="q-question">Où souhaitez-vous recevoir votre rapport complet ?</div>
+      <div class="contact-form">
+        <div class="form-field">
+          <label>Prénom et nom *</label>
+          <input type="text" id="f-name" placeholder="Jean Dupont" oninput="checkForm()">
+        </div>
+        <div class="form-field">
+          <label>Email professionnel *</label>
+          <input type="email" id="f-email" placeholder="jean@entreprise.fr" oninput="checkForm()">
+        </div>
+        <div class="form-field">
+          <label>Entreprise *</label>
+          <input type="text" id="f-company" placeholder="Nom de votre entreprise" oninput="checkForm()">
+        </div>
+        <div class="form-field">
+          <label>Téléphone <span style="opacity:0.35">(optionnel)</span></label>
+          <input type="tel" id="f-phone" placeholder="+33 6 00 00 00 00">
+        </div>
+      </div>
+      <div class="quiz-nav"><button class="btn-next" id="next-7" onclick="showResults()" disabled>Voir mon score →</button></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     RÉSULTATS
+════════════════════════════════════ -->
+<div id="results-screen">
+  <div class="results-wrap">
+
+    <!-- Score circle -->
+    <div class="score-circle-wrap">
+      <svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="72" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+        <circle id="score-arc" cx="85" cy="85" r="72" fill="none" stroke="#1A4FFF"
+                stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="452" stroke-dashoffset="452"
+                style="transition: stroke-dashoffset 1.3s ease"/>
+      </svg>
+      <div>
+        <div class="score-num-big" id="score-num">0</div>
+        <div class="score-slash">/100</div>
+      </div>
+    </div>
+
+    <div id="profile-badge" class="profile-badge"></div>
+    <h2 class="result-headline" id="result-title"></h2>
+    <p class="result-desc" id="result-desc"></p>
+
+    <!-- Dimensions -->
+    <div class="section-gap">
+      <div class="block-title">Détail par dimension</div>
+      <div class="dim-row"><span class="dim-name">Volume AO</span><div class="dim-track"><div class="dim-fill" id="bar-0"></div></div><span class="dim-pts" id="pts-0"></span></div>
+      <div class="dim-row"><span class="dim-name">Veille & détection</span><div class="dim-track"><div class="dim-fill" id="bar-1"></div></div><span class="dim-pts" id="pts-1"></span></div>
+      <div class="dim-row"><span class="dim-name">Sélection GO/NOGO</span><div class="dim-track"><div class="dim-fill" id="bar-2"></div></div><span class="dim-pts" id="pts-2"></span></div>
+      <div class="dim-row"><span class="dim-name">Qualité de rédaction</span><div class="dim-track"><div class="dim-fill" id="bar-3"></div></div><span class="dim-pts" id="pts-3"></span></div>
+      <div class="dim-row"><span class="dim-name">Taux de succès</span><div class="dim-track"><div class="dim-fill" id="bar-4"></div></div><span class="dim-pts" id="pts-4"></span></div>
+      <div class="dim-row"><span class="dim-name">Pilotage & suivi</span><div class="dim-track"><div class="dim-fill" id="bar-5"></div></div><span class="dim-pts" id="pts-5"></span></div>
+    </div>
+
+    <!-- Recommandations -->
+    <div class="section-gap">
+      <div class="block-title">Actions prioritaires</div>
+      <div class="reco-list" id="reco-list"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3 id="cta-title"></h3>
+      <p id="cta-desc"></p>
+      <!-- ⚠️ Remplacez par votre lien Calendly -->
+      <a href="https://calendly.com/VOTRE-LIEN" target="_blank" class="btn-rdv" id="cta-btn"></a>
+      <button class="btn-restart" onclick="restartQuiz()">↺ Refaire le diagnostic</button>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  // ── CONFIG ─────────────────────────────────────
+  const TOTAL   = 8;
+  const MAX_PTS = [0, 15, 15, 15, 20, 20, 15]; // Q1 non noté
+  let answers   = new Array(TOTAL).fill(null);
+
+  const PROFILES = {
+    low: {
+      label: 'Profil Débutant', cls: 'badge-low',
+      title: 'Vous partez avec un désavantage structurel',
+      desc:  'Votre organisation n\'est pas encore outillée pour compétir sur les appels d\'offres. La bonne nouvelle : les marges de progression sont importantes et rapides à activer.',
+      recos: [
+        'Mettre en place une veille AO structurée dès cette semaine',
+        'Créer une grille GO/NOGO simple pour filtrer les opportunités',
+        'Former votre équipe à la rédaction d\'offres différenciées',
+        'Désigner un référent AO dans votre structure',
+      ],
+      ctaTitle: 'Vous avez besoin d\'un accompagnement rapide',
+      ctaDesc:  'Un expert Aconia peut vous aider à structurer votre approche AO en moins de 30 jours. Réservez 30 minutes offertes, sans engagement.',
+      ctaBtn:   'Parler à un expert →',
+      color: '#CC2B2B',
+    },
+    mid: {
+      label: 'Profil Intermédiaire', cls: 'badge-mid',
+      title: 'Vous avez des bases solides, mais des freins cachés',
+      desc:  'Votre organisation répond aux AO avec régularité, mais des inefficacités dans votre processus vous font perdre des marchés que vous méritez.',
+      recos: [
+        'Affiner vos critères de sélection GO/NOGO pour mieux cibler',
+        'Renforcer la personnalisation de vos offres sur les enjeux décideurs',
+        'Analyser systématiquement vos AO perdus pour progresser',
+        'Structurer un pipeline AO dédié avec indicateurs de suivi',
+      ],
+      ctaTitle: 'Identifiez vos quick-wins prioritaires',
+      ctaDesc:  'Un audit de 30 minutes avec un expert Aconia vous permettra d\'identifier les 2-3 actions qui feront le plus d\'impact sur votre taux de succès.',
+      ctaBtn:   'Voir mes quick-wins →',
+      color: '#E87040',
+    },
+    high: {
+      label: 'Profil Avancé', cls: 'badge-high',
+      title: 'Vous êtes mature — passez à la vitesse supérieure',
+      desc:  'Votre organisation a une vraie maturité sur les AO. L\'enjeu est de scaler ce qui fonctionne et d\'identifier les 5–10 % de progression qui feront la différence.',
+      recos: [
+        'Identifier les segments AO les plus rentables dans votre marché',
+        'Automatiser votre veille et vos processus de réponse',
+        'Bâtir des partenariats stratégiques pour accéder à des marchés plus larges',
+        'Viser un taux de succès supérieur à 40 % sur les AO ciblés',
+      ],
+      ctaTitle: 'Passez à la vitesse supérieure',
+      ctaDesc:  'Discutons de votre stratégie AO pour identifier comment optimiser vos performances et scaler vos succès sur les marchés prioritaires.',
+      ctaBtn:   'Optimiser ma performance →',
+      color: '#00A878',
+    },
+  };
+
+  // ── PROGRESS ───────────────────────────────────
+  function updateProgress(step) {
+    const pct = Math.round((step / TOTAL) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('step-label').textContent =
+      step < TOTAL ? `Question ${step + 1} sur ${TOTAL}` : 'Calcul du score…';
+    document.getElementById('step-pct').textContent = pct + ' %';
+  }
+
+  // ── OPTION SELECTION ───────────────────────────
+  function selectOption(btn, qIdx, pts) {
+    document.querySelectorAll(`#q-${qIdx} .option-btn`).forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    answers[qIdx] = pts;
+    document.getElementById('next-' + qIdx).disabled = false;
+  }
+
+  // ── NEXT QUESTION ──────────────────────────────
+  function goNext(current) {
+    document.getElementById('q-' + current).classList.remove('active');
+    document.getElementById('q-' + (current + 1)).classList.add('active');
+    updateProgress(current + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── CONTACT FORM ───────────────────────────────
+  function checkForm() {
+    const ok = document.getElementById('f-name').value.trim() &&
+               document.getElementById('f-email').value.includes('@') &&
+               document.getElementById('f-company').value.trim();
+    document.getElementById('next-7').disabled = !ok;
+  }
+
+  // ── SHOW RESULTS ───────────────────────────────
+  function showResults() {
+    const total   = answers.slice(1, 7).reduce((s, v) => s + (v || 0), 0);
+    const profile = total <= 40 ? PROFILES.low : total <= 70 ? PROFILES.mid : PROFILES.high;
+
+    document.getElementById('quiz-screen').style.display    = 'none';
+    document.getElementById('results-screen').style.display = 'block';
+
+    // Arc color
+    document.getElementById('score-arc').style.stroke = profile.color;
+
+    // Animate score counter
+    animateCount('score-num', 0, total, 1300);
+
+    // Animate arc (circumference ≈ 452)
+    setTimeout(() => {
+      document.getElementById('score-arc').style.strokeDashoffset = 452 - (452 * total / 100);
+    }, 80);
+
+    // Badge + texts
+    const badge = document.getElementById('profile-badge');
+    badge.textContent = profile.label;
+    badge.className   = 'profile-badge ' + profile.cls;
+    document.getElementById('result-title').textContent = profile.title;
+    document.getElementById('result-desc').textContent  = profile.desc;
+
+    // Dimension bars
+    const dimScores = answers.slice(1, 7);
+    const dimMax    = MAX_PTS.slice(1, 7);
+    dimScores.forEach((score, i) => {
+      const pct = dimMax[i] ? Math.round(((score || 0) / dimMax[i]) * 100) : 0;
+      setTimeout(() => { document.getElementById('bar-' + i).style.width = pct + '%'; }, 250 + i * 70);
+      document.getElementById('pts-' + i).textContent = (score || 0) + ' / ' + dimMax[i];
+    });
+
+    // Recommendations
+    document.getElementById('reco-list').innerHTML =
+      profile.recos.map(r =>
+        `<div class="reco-item"><span class="reco-arrow">→</span><span class="reco-text">${r}</span></div>`
+      ).join('');
+
+    // CTA
+    document.getElementById('cta-title').textContent = profile.ctaTitle;
+    document.getElementById('cta-desc').textContent  = profile.ctaDesc;
+    document.getElementById('cta-btn').textContent   = profile.ctaBtn;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── RESTART ────────────────────────────────────
+  function restartQuiz() {
+    answers = new Array(TOTAL).fill(null);
+    document.querySelectorAll('.question-block').forEach((b, i) => {
+      b.classList.toggle('active', i === 0);
+      b.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+    });
+    document.querySelectorAll('.btn-next').forEach(btn => btn.disabled = true);
+    ['f-name','f-email','f-company','f-phone'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('results-screen').style.display = 'none';
+    document.getElementById('quiz-screen').style.display    = 'block';
+    updateProgress(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── COUNTER ANIMATION ─────────────────────────
+  function animateCount(id, from, to, duration) {
+    const el = document.getElementById(id);
+    const t0 = performance.now();
+    (function step(now) {
+      const p = Math.min((now - t0) / duration, 1);
+      el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+</script>
+
+</body>
+</html>
