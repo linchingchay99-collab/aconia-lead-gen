@@ -4,21 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aconia — Maturité Appels d'Offres</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ── VARIABLES DE COULEUR (Charte Bleu, Crème/Blanc, Orange) ── */
     :root {
-      --ink:         #0B0F1A;   /* Bleu marine très foncé pour les textes */
-      --accent:      #FF6B00;   /* Orange dynamique pour les actions clés */
-      --accent-dark: #E05E00;   /* Orange survolé */
-      --muted:       #6B7280;   /* Gris-bleuté pour les textes secondaires */
-      --border:      #D6D0C4;   /* Bordures fines */
-      --paper:       #F5F2EC;   /* Fond "papier crème" d'origine */
-      --card:        #FEFCF8;   /* Fond des encadrés blanc cassé */
+      --ink:         #0B0F1A;
+      --accent:      #FF6B00;
+      --accent-dark: #E05E00;
+      --muted:       #6B7280;
+      --border:      #D6D0C4;
+      --paper:       #F5F2EC;
+      --card:        #FEFCF8;
       --green:       #00A878;
       --orange:      #FF6B00;
       --red:         #CC2B2B;
@@ -40,10 +38,9 @@
     }
 
     html {
-      scroll-behavior: smooth; /* Permet un défilement fluide vers À propos et Contact */
+      scroll-behavior: smooth;
     }
 
-    /* ── BARRE DE NAVIGATION (NAV) ── */
     nav {
       display: flex;
       align-items: center;
@@ -94,7 +91,6 @@
       color: #fff !important; 
     }
 
-    /* ── HERO SECTION (ACCUEIL) ── */
     .hero {
       padding: 80px 48px;
       max-width: 1200px;
@@ -145,7 +141,6 @@
       background: var(--accent-dark);
     }
 
-    /* Styles pour la grille du formulaire de contact */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -160,7 +155,7 @@
       background: var(--card);
       color: var(--ink);
       font-family: inherit;
-      font-size: 1px;
+      font-size: 1rem;
     }
     .form-control:focus {
       outline: none;
@@ -175,9 +170,6 @@
     <div class="nav-links">
       <a href="#a-propos">À propos</a>
       <a href="#contact">Contact</a>
-      <a href="#">Le questionnaire</a>
-      <a href="#">Le scoring</a>
-      <a href="#">Les résultats</a>
     </div>
     <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
   </nav>
@@ -206,26 +198,8 @@
       <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');" style="display: flex; flex-direction: column; gap: 20px;">
         <div class="form-group">
           <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Nom complet</label>
-          <input type="text" required class="form-control" style="font-size: 1rem;">
+          <input type="text" required class="form-control">
         </div>
         <div class="form-group">
           <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Adresse email</label>
-          <input type="email" required class="form-control" style="font-size: 1rem;">
-        </div>
-        <div class="form-group">
-          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Message</label>
-          <textarea required rows="4" class="form-control" style="font-size: 1rem; resize: vertical;"></textarea>
-        </div>
-        <button type="submit" style="background: var(--accent); color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-size: 1rem; margin-top: 10px; font-family: 'DM Sans', sans-serif;">
-          Envoyer le message
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <footer style="padding: 40px 48px; text-align: center; color: var(--muted); font-size: 0.85rem; background: var(--paper);">
-    <p>© 2026 Aconia. Tous droits réservés.</p>
-  </footer>
-
-</body>
-</html>
+          <input type="email
