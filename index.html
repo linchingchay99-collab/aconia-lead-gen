@@ -1,143 +1,231 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Score de Maturité Appels d'Offres — Aconia</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
- :root {
-    --paper: #FFFFFF;
-    --card: #F4F7FC;
-    --border: #E2E8F0;
-    --ink: #0B1629;
-    --muted: #4A5568;
-    --accent: #FF6B00;
-    --accent-dark: #E05E00;
-    --green: #00A878;
-    --orange: #FF6B00;
-    --red: #CC2B2B;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aconia — Maturité Appels d'Offres</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    /* ── VARIABLES DE COULEUR (Charte Bleu, Crème/Blanc, Orange) ── */
+    :root {
+      --ink:         #0B0F1A;   /* Bleu marine très foncé pour les textes */
+      --accent:      #FF6B00;   /* Orange dynamique pour les actions clés */
+      --accent-dark: #E05E00;   /* Orange survolé */
+      --muted:       #6B7280;   /* Gris-bleuté pour les textes secondaires */
+      --border:      #D6D0C4;   /* Bordures fines */
+      --paper:       #F5F2EC;   /* Fond "papier crème" d'origine */
+      --card:        #FEFCF8;   /* Fond des encadrés blanc cassé */
+      --green:       #00A878;
+      --orange:      #FF6B00;
+      --red:         #CC2B2B;
+    }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.6;
-  }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  h1, h2, h3, h4 {
-    font-family: 'Syne', sans-serif;
-    line-height: 1.15;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
- <nav>
-  <div class="logo">Aconia<span>.</span></div>
-  <div style="display: flex; gap: 24px; align-items: center;">
-    <a href="#a-propos">À propos</a>
-    <a href="#contact">Contact</a>
-   
-  </div>
-  <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
-</nav>
-<!-- HERO -->
-<div class="hero" id="hero">
-  <div>
-    <div class="hero-badge">Outil de diagnostic gratuit</div>
-    <h1>Votre organisation est-elle <em>prête</em> à gagner des appels d'offres ?</h1>
-    <p>En 4 minutes, évaluez votre maturité sur les appels d'offres B2B et identifiez vos leviers prioritaires pour augmenter votre taux de succès.</p>
-    <a href="diagnostic.html" class="hero-cta">Faire le diagnostic gratuit →</a>
-    <div class="hero-sub">
-      <span>✓ 7 questions</span>
-      &nbsp;·&nbsp;
-      <span>Résultats immédiats</span>
-      &nbsp;·&nbsp;
-      <span>Sans engagement</span>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="score-ring">
-      <div class="score-inner">
-        <div class="score-num">68</div>
-        <div class="score-label">/100</div>
-      </div>
-    </div>
-    <ul class="dimension-list">
-      <li><span>Veille & détection</span><div class="dim-bar"><div class="dim-fill" style="width:45%"></div></div></li>
-      <li><span>Qualification GO/NOGO</span><div class="dim-bar"><div class="dim-fill" style="width:80%"></div></div></li>
-      <li><span>Structuration de l'offre</span><div class="dim-bar"><div class="dim-fill" style="width:60%"></div></div></li>
-      <li><span>Pilotage commercial</span><div class="dim-bar"><div class="dim-fill" style="width:70%"></div></div></li>
-    </ul>
-  </div>
-</div>
+    h1, h2, h3, h4 {
+      font-family: 'Syne', sans-serif;
+      line-height: 1.15;
+    }
 
-<!-- PROBLEM SECTION -->
-<section id="probleme">
-  <div class="section-eyebrow">Pourquoi ce diagnostic ?</div>
-  <h2>La plupart des entreprises perdent des appels d'offres pour les mauvaises raisons</h2>
-  <p>Pas par manque de compétences — mais par manque de méthode. Ce diagnostic vous aide à identifier exactement où vous perdez du terrain.</p>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <div class="problem-icon">📡</div>
-      <h3>Détection tardive</h3>
-      <p>Les opportunités sont identifiées trop tard pour construire une offre différenciée et crédible.</p>
+    html {
+      scroll-behavior: smooth; /* Permet un défilement fluide vers À propos et Contact */
+    }
+
+    /* ── BARRE DE NAVIGATION (NAV) ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--paper);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--ink); }
+    
+    .nav-cta {
+      background: var(--ink);
+      color: var(--paper) !important;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.875rem !important;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { 
+      background: var(--accent) !important; 
+      color: #fff !important; 
+    }
+
+    /* ── HERO SECTION (ACCUEIL) ── */
+    .hero {
+      padding: 80px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .badge {
+      background: #E8EDFF;
+      color: var(--orange);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      max-width: 800px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    .main-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+    }
+    .main-cta:hover {
+      background: var(--accent-dark);
+    }
+
+    /* Styles pour la grille du formulaire de contact */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 100%;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 1px;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Aconia<span>.</span></div>
+    <div class="nav-links">
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Le questionnaire</a>
+      <a href="#">Le scoring</a>
+      <a href="#">Les résultats</a>
     </div>
-    <div class="problem-card">
-      <div class="problem-icon">📋</div>
-      <h3>Offres trop génériques</h3>
-      <p>Les réponses ne parlent pas au décideur. Elles répondent au cahier des charges, pas aux enjeux réels.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">🎯</div>
-      <h3>Mauvais filtrage GO/NOGO</h3>
-      <p>On répond à tout par principe, sans distinguer les appels d'offres qui méritent un investissement sérieux.</p>
-    </div>
-  </div>
-</section>
-<section id="a-propos" style="padding: 60px 48px; background: var(--card); border-top: 1px solid var(--border);">
+    <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="badge">Outil de diagnostic gratuit</div>
+    <h1>Votre organisation face aux marchés publics.</h1>
+    <p class="lead">Mesurez instantanément la maturité de votre entreprise sur les appels d'offres et obtenez un plan d'action personnalisé pour maximiser votre taux de réussite.</p>
+    <a href="diagnostic.html" class="main-cta">Faire le diagnostic gratuit →</a>
+  </section>
+
+  <section id="a-propos" style="padding: 80px 48px; background: var(--card); border-top: 1px solid var(--border);">
     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <h2 style="font-size: 2rem; color: var(--ink); margin-bottom: 20px;">À propos d'ACONIA</h2>
-      <p style="font-size: 1.1rem; color: var(--muted); line-height: 1.8; max-width: 650px; margin: 0 auto;">
+      <h2 style="font-size: 2.25rem; color: var(--ink); margin-bottom: 24px; font-weight: 800;">À propos d'ACONIA</h2>
+      <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.8; max-width: 700px; margin: 0 auto;">
         <strong style="color: var(--ink);">ACONIA.FR</strong> est un site Internet spécialisé dans la formation et l’accompagnement des TPE sur les réponses aux appels d’offres et marchés publics.
       </p>
     </div>
   </section>
 
-  <section id="contact" style="padding: 60px 48px; background: var(--paper); border-top: 1px solid var(--border);">
+  <section id="contact" style="padding: 80px 48px; background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div style="max-width: 500px; margin: 0 auto;">
-      <h2 style="font-size: 2rem; color: var(--ink); margin-bottom: 10px; text-align: center;">Contactez-nous</h2>
-      <p style="text-align: center; color: var(--muted); margin-bottom: 30px;">Une question ? Notre équipe vous répond dans les plus brefs délais.</p>
+      <h2 style="font-size: 2.25rem; color: var(--ink); margin-bottom: 10px; text-align: center; font-weight: 800;">Contactez-nous</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 35px; font-size: 1rem;">Une question ? Notre équipe vous répond dans les plus brefs délais.</p>
       
-      <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');" style="display: flex; flex-direction: column; gap: 15px;">
-        <div>
-          <label style="display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; color: var(--ink);">Nom complet</label>
-          <input type="text" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--ink); font-family: inherit;">
+      <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');" style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="form-group">
+          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Nom complet</label>
+          <input type="text" required class="form-control" style="font-size: 1rem;">
         </div>
-        <div>
-          <label style="display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; color: var(--ink);">Adresse email</label>
-          <input type="email" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--ink); font-family: inherit;">
+        <div class="form-group">
+          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Adresse email</label>
+          <input type="email" required class="form-control" style="font-size: 1rem;">
         </div>
-        <div>
-          <label style="display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; color: var(--ink);">Message</label>
-          <textarea required rows="4" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--ink); font-family: inherit; resize: vertical;"></textarea>
+        <div class="form-group">
+          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Message</label>
+          <textarea required rows="4" class="form-control" style="font-size: 1rem; resize: vertical;"></textarea>
         </div>
-        <button type="submit" style="background: var(--accent); color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-size: 1rem; margin-top: 10px;">
+        <button type="submit" style="background: var(--accent); color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-size: 1rem; margin-top: 10px; font-family: 'DM Sans', sans-serif;">
           Envoyer le message
         </button>
       </form>
     </div>
   </section>
 
-
-<!-- FOOTER -->
-<footer id="contact">
-  <p style="margin-bottom:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;">Aconia — Appels d'offres B2B</p>
-  <p>Ce document est un kit complet prêt à déployer dans Typeform + votre CRM.</p>
-  <p style="margin-top:12px;font-size:0.75rem;">© 2025 Aconia · Tous droits réservés</p>
-</footer>
+  <footer style="padding: 40px 48px; text-align: center; color: var(--muted); font-size: 0.85rem; background: var(--paper);">
+    <p>© 2026 Aconia. Tous droits réservés.</p>
+  </footer>
 
 </body>
 </html>
