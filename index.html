@@ -101,10 +101,18 @@
       color: #fff !important; 
     }
 
-    .hero {
-      padding: 100px 48px;
+    /* ── HERO GRID LAYOUT ── */
+    .hero-container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-left {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -122,18 +130,15 @@
       letter-spacing: 0.05em;
     }
 
-    .hero h1 {
-      font-size: 4rem;
+    .hero-left h1 {
+      font-size: 3.75rem;
       font-weight: 800;
-      max-width: 800px;
       letter-spacing: -0.03em;
     }
 
-    .hero p.lead {
+    .hero-left p.lead {
       font-size: 1.25rem;
       color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 8px;
     }
 
     .main-cta {
@@ -152,6 +157,77 @@
       background: var(--accent-dark);
     }
 
+    /* ── ANIMATED SCORE VISUAL (HERO RIGHT) ── */
+    .hero-right {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .score-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0% 68%, var(--border) 68% 100%);
+      margin: 0 auto 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: spinScore 1.5s ease-out forwards;
+    }
+
+    .score-circle::before {
+      content: '';
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: var(--card);
+    }
+
+    .score-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .score-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .score-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .stat-row:last-child { border: none; }
+
+    .stat-name { font-size: 0.95rem; color: var(--muted); }
+    .stat-val { font-weight: 700; color: var(--ink); }
+
+    @keyframes spinScore {
+      from { transform: rotate(-30deg); opacity: 0; }
+      to { transform: rotate(0deg); opacity: 1; }
+    }
+
+    /* ── FORMULAIRE ── */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -190,11 +266,36 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="badge">Outil de diagnostic gratuit</div>
-    <h1>Votre organisation face aux marchés publics.</h1>
-    <p class="lead">Mesurez instantanément la maturité de votre entreprise sur les appels d'offres et obtenez un plan d'action personnalisé pour maximiser votre taux de réussite.</p>
-    <a href="diagnostic.html" class="main-cta">Faire le diagnostic gratuit →</a>
+  <section class="hero-container">
+    <div class="hero-left">
+      <div class="badge">Outil de diagnostic gratuit</div>
+      <h1>Votre organisation face aux marchés publics.</h1>
+      <p class="lead">Mesurez instantanément la maturité de votre entreprise sur les appels d'offres et obtenez un plan d'action personnalisé pour maximiser votre taux de réussite.</p>
+      <a href="diagnostic.html" class="main-cta">Faire le diagnostic gratuit →</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="score-circle">
+        <div class="score-text">
+          <div class="score-number">68%</div>
+          <div class="score-label">Maturité</div>
+        </div>
+      </div>
+      <div class="stats-list">
+        <div class="stat-row">
+          <span class="stat-name">Veille & Détection</span>
+          <span class="stat-val" style="color: var(--green);">Optimisée</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Dossier Technique</span>
+          <span class="stat-val" style="color: var(--orange);">À améliorer</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Conformité Administrative</span>
+          <span class="stat-val" style="color: var(--green);">Excellente</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="a-propos" style="padding: 90px 48px; background: var(--card); border-top: 1px solid var(--border);">
