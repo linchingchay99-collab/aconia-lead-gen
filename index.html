@@ -1,340 +1,328 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aconia — Maturité Appels d'Offres</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aconia — Maturité Appels d'Offres</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0F1A;
+    --paper: #F5F2EC;
+    --accent: #FF6B00; /* Orange Aconia */
+    --accent-dark: #E05E00;
+    --muted: #6B7280;
+    --border: #D6D0C4;
+    --green: #00A878;
+    --orange: #FF6B00;
+    --red: #CC2B2B;
+    --card: #FEFCF8;
+  }
 
-  <style>
-    :root {
-      --ink:         #0B0F1A;
-      --accent:      #FF6B00;
-      --accent-dark: #E05E00;
-      --muted:       #6B7280;
-      --border:      #D6D0C4;
-      --paper:       #F5F2EC;
-      --card:        #FEFCF8;
-      --green:       #00A878;
-      --orange:      #FF6B00;
-      --red:         #CC2B2B;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      font-size: 16px;
-      line-height: 1.6;
-    }
+  h1, h2, h3, h4 {
+    font-family: 'Syne', sans-serif;
+    line-height: 1.15;
+  }
 
-    h1, h2, h3, h4 {
-      font-family: 'Syne', sans-serif;
-      line-height: 1.15;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 
-    html {
-      scroll-behavior: smooth;
-    }
+  /* ── BARRE DE NAVIGATION (MENU À DROITE) ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .nav-right-group {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 0.875rem !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
 
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 48px;
-      border-bottom: 1px solid var(--border);
-      background: var(--paper);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
+  /* ── SECTION HERO GRAPHIQUE AVEC ANIMATION ── */
+  .hero {
+    padding: 100px 48px 80px;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #E8EEFF;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+    max-width: 460px;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(255,107,0,0.25);
+  }
+  .hero-cta:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(255,107,0,0.35);
+  }
+  .hero-sub {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
 
-    .nav-logo img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-    }
-    
-    .nav-right-group {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-    
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--ink); }
-    
-    .nav-cta {
-      background: var(--ink);
-      color: var(--paper) !important;
-      padding: 10px 22px;
-      border-radius: 6px;
-      font-size: 0.875rem !important;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-cta:hover { 
-      background: var(--accent) !important; 
-      color: #fff !important; 
-    }
+  /* ── L'ANIMATION DE CLAUDE (RING SPIN) ── */
+  .hero-visual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+  }
+  .score-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 8px solid #E8EEFF;
+    border-top-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    position: relative;
+    animation: spin-slow 6s linear infinite;
+  }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  
+  .score-inner {
+    animation: counter-spin 6s linear infinite;
+    text-align: center;
+  }
+  @keyframes counter-spin { to { transform: rotate(-360deg); } }
+  
+  .score-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .score-label { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
 
-    /* ── HERO GRID LAYOUT ── */
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 48px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
+  .dimension-list { list-style: none; }
+  .dimension-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .dimension-list li:last-child { border-bottom: none; }
+  .dim-bar {
+    width: 80px;
+    height: 6px;
+    background: #E8EEFF;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .dim-fill { height: 100%; border-radius: 3px; background: var(--accent); }
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-    }
+  /* ── CONFIGURATION FORMULAIRE DE CONTACT ── */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+  .form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
 
-    .badge {
-      background: #E8EDFF;
-      color: var(--orange);
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .hero-left h1 {
-      font-size: 3.75rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-left p.lead {
-      font-size: 1.25rem;
-      color: var(--muted);
-    }
-
-    .main-cta {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      padding: 16px 32px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: background 0.2s;
-      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
-    }
-    .main-cta:hover {
-      background: var(--accent-dark);
-    }
-
-    /* ── ANIMATED SCORE VISUAL (HERO RIGHT) ── */
-    .hero-right {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.04);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .score-circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: conic-gradient(var(--accent) 0% 68%, var(--border) 68% 100%);
-      margin: 0 auto 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      animation: spinScore 1.5s ease-out forwards;
-    }
-
-    .score-circle::before {
-      content: '';
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: var(--card);
-    }
-
-    .score-text {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .score-number {
-      font-family: 'Syne', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      color: var(--ink);
-      line-height: 1;
-    }
-
-    .score-label {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px dashed var(--border);
-    }
-    .stat-row:last-child { border: none; }
-
-    .stat-name { font-size: 0.95rem; color: var(--muted); }
-    .stat-val { font-weight: 700; color: var(--ink); }
-
-    @keyframes spinScore {
-      from { transform: rotate(-30deg); opacity: 0; }
-      to { transform: rotate(0deg); opacity: 1; }
-    }
-
-    /* ── FORMULAIRE ── */
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      width: 100%;
-    }
-    .form-control {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--card);
-      color: var(--ink);
-      font-family: inherit;
-      font-size: 1rem;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-  </style>
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; flex-direction: column; gap: 16px; }
+    .nav-right-group { flex-direction: column; gap: 16px; }
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+    .hero-visual { display: none; }
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="image_259564.png" alt="Aconia Logo">
-    </a>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo-ACONIA-appeldoffres-marchespublics-formation-accompagnement-externalisation.png" alt="Aconia Logo">
+  </a>
+  
+  <div class="nav-right-group">
+    <div class="nav-links">
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contactez-nous</a>
+    </div>
+    <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-badge">Outil de diagnostic gratuit</div>
+    <h1>Votre organisation est-elle <em>prête</em> à gagner des appels d'offres ?</h1>
+    <p>En 4 minutes, évaluez votre maturité sur les appels d'offres B2B et identifiez vos leviers prioritaires pour augmenter votre taux de succès.</p>
+    <a href="diagnostic.html" class="hero-cta">Faire le diagnostic gratuit →</a>
+    <div class="hero-sub">
+      <span style="color: var(--muted)">✓ 7 questions &nbsp;·&nbsp; Résultats immédiats</span>
+    </div>
+  </div>
+  
+  <div class="hero-visual">
+    <div class="score-ring">
+      <div class="score-inner">
+        <div class="score-num">68</div>
+        <div class="score-label">/100</div>
+      </div>
+    </div>
+    <ul class="dimension-list">
+      <li><span>Veille & détection</span><div class="dim-bar"><div class="dim-fill" style="width:45%"></div></div></li>
+      <li><span>Qualification GO/NOGO</span><div class="dim-bar"><div class="dim-fill" style="width:80%"></div></div></li>
+      <li><span>Structuration de l'offre</span><div class="dim-bar"><div class="dim-fill" style="width:60%"></div></div></li>
+      <li><span>Pilotage commercial</span><div class="dim-bar"><div class="dim-fill" style="width:70%"></div></div></li>
+    </ul>
+  </div>
+</div>
+
+<section id="a-propos" style="max-width: 1080px; margin: 0 auto; padding: 90px 24px; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.03em;">À propos d'ACONIA</h2>
+    <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.8; font-weight: 300;">
+      <strong style="color: var(--ink); font-weight: 600;">ACONIA.FR</strong> est un site Internet spécialisé dans la formation et l’accompagnement des TPE sur les réponses aux appels d’offres et marchés publics.
+    </p>
+  </div>
+</section>
+
+<section id="contact" style="max-width: 1080px; margin: 0 auto; padding: 90px 24px;">
+  <div style="max-width: 500px; margin: 0 auto;">
+    <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 10px; text-align: center; letter-spacing: -0.03em;">Contactez-nous</h2>
+    <p style="text-align: center; color: var(--muted); margin-bottom: 40px; font-weight: 300; font-size: 1rem;">Une question ? Notre équipe vous répond dans les plus brefs délais.</p>
     
-    <div class="nav-right-group">
-      <div class="nav-links">
-        <a href="#a-propos">À propos</a>
-        <a href="#contact">Contact</a>
+    <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');" style="display: flex; flex-direction: column; gap: 20px;">
+      <div class="form-group">
+        <label style="font-size: 0.9rem; font-weight: 600;">Nom complet</label>
+        <input type="text" required class="form-control">
       </div>
-      <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
-    </div>
-  </nav>
-
-  <section class="hero-container">
-    <div class="hero-left">
-      <div class="badge">Outil de diagnostic gratuit</div>
-      <h1>Votre organisation face aux marchés publics.</h1>
-      <p class="lead">Mesurez instantanément la maturité de votre entreprise sur les appels d'offres et obtenez un plan d'action personnalisé pour maximiser votre taux de réussite.</p>
-      <a href="diagnostic.html" class="main-cta">Faire le diagnostic gratuit →</a>
-    </div>
-
-    <div class="hero-right">
-      <div class="score-circle">
-        <div class="score-text">
-          <div class="score-number">68%</div>
-          <div class="score-label">Maturité</div>
-        </div>
+      <div class="form-group">
+        <label style="font-size: 0.9rem; font-weight: 600;">Adresse email</label>
+        <input type="email" required class="form-control">
       </div>
-      <div class="stats-list">
-        <div class="stat-row">
-          <span class="stat-name">Veille & Détection</span>
-          <span class="stat-val" style="color: var(--green);">Optimisée</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-name">Dossier Technique</span>
-          <span class="stat-val" style="color: var(--orange);">À améliorer</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-name">Conformité Administrative</span>
-          <span class="stat-val" style="color: var(--green);">Excellente</span>
-        </div>
+      <div class="form-group">
+        <label style="font-size: 0.9rem; font-weight: 600;">Message</label>
+        <textarea required rows="4" class="form-control" style="resize: vertical;"></textarea>
       </div>
-    </div>
-  </section>
+      <button type="submit" style="background: var(--accent); color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-size: 1rem; margin-top: 10px; font-family: 'Syne', sans-serif;">
+        Envoyer le message
+      </button>
+    </form>
+  </div>
+</section>
 
-  <section id="a-propos" style="padding: 90px 48px; background: var(--card); border-top: 1px solid var(--border);">
-    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <h2 style="font-size: 2.25rem; color: var(--ink); margin-bottom: 24px; font-weight: 800;">À propos d'ACONIA</h2>
-      <p style="font-size: 1.2rem; color: var(--muted); line-height: 1.8; max-width: 700px; margin: 0 auto;">
-        <strong style="color: var(--ink);">ACONIA.FR</strong> est un site Internet spécialisé dans la formation et l’accompagnement des TPE sur les réponses aux appels d’offres et marchés publics.
-      </p>
-    </div>
-  </section>
-
-  <section id="contact" style="padding: 90px 48px; background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div style="max-width: 500px; margin: 0 auto;">
-      <h2 style="font-size: 2.25rem; color: var(--ink); margin-bottom: 10px; text-align: center; font-weight: 800;">Contactez-nous</h2>
-      <p style="text-align: center; color: var(--muted); margin-bottom: 35px; font-size: 1rem;">Une question ? Notre équipe vous répond dans les plus brefs délais.</p>
-      
-      <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');" style="display: flex; flex-direction: column; gap: 20px;">
-        <div class="form-group">
-          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Nom complet</label>
-          <input type="text" required class="form-control">
-        </div>
-        <div class="form-group">
-          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Adresse email</label>
-          <input type="email" required class="form-control">
-        </div>
-        <div class="form-group">
-          <label style="font-size: 0.9rem; font-weight: 600; color: var(--ink);">Message</label>
-          <textarea required rows="4" class="form-control" style="resize: vertical;"></textarea>
-        </div>
-        <button type="submit" style="background: var(--accent); color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: 700; cursor: pointer; transition: background 0.2s; font-size: 1rem; margin-top: 10px; font-family: 'DM Sans', sans-serif;">
-          Envoyer le message
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <footer style="padding: 40px 48px; text-align: center; color: var(--muted); font-size: 0.85rem; background: var(--paper);">
-    <p>© 2026 Aconia. Tous droits réservés.</p>
-  </footer>
+<footer>
+  <p style="margin-bottom:8px; font-family:'Syne',sans-serif; font-weight:700; font-size:1rem;">Aconia — Appels d'offres B2B</p>
+  <p>© 2026 Aconia · Tous droits réservés</p>
+</footer>
 
 </body>
 </html>
