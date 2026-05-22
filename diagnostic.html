@@ -16,9 +16,6 @@
       --accent-dark: #E05E00;
       --muted: #6B7280;
       --border: #D6D0C4;
-      --green: #00A878;
-      --orange: #FF6B00;
-      --red: #CC2B2B;
       --card: #FEFCF8;
     }
 
@@ -49,11 +46,6 @@
       top: 0;
       z-index: 100;
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
     .nav-logo img {
       height: 40px;
       width: auto;
@@ -74,9 +66,7 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: color 0.2s;
     }
-    nav a:hover { color: var(--ink); }
     .nav-cta {
       background: var(--accent);
       color: white !important;
@@ -84,7 +74,6 @@
       border-radius: 6px;
       font-size: 0.875rem !important;
       font-weight: 600;
-      text-decoration: none;
     }
 
     /* ── CONTENEUR DU DIAGNOSTIC ── */
@@ -111,7 +100,6 @@
       font-size: 0.85rem;
       color: var(--muted);
       margin-bottom: 8px;
-      font-weight: 500;
     }
     .progress-bar {
       width: 100%;
@@ -124,7 +112,6 @@
       height: 100%;
       width: 0%;
       background: var(--accent);
-      border-radius: 3px;
       transition: width 0.4s ease;
     }
 
@@ -132,7 +119,6 @@
       font-size: 1.4rem;
       font-weight: 800;
       margin-bottom: 24px;
-      letter-spacing: -0.02em;
     }
 
     .options-list {
@@ -149,14 +135,13 @@
       border-radius: 10px;
       cursor: pointer;
       background: transparent;
-      transition: all 0.2s;
       font-family: inherit;
       font-size: 0.95rem;
       text-align: left;
       color: var(--ink);
       width: 100%;
+      transition: all 0.2s;
     }
-
     .option-item:hover {
       border-color: var(--accent);
       background: rgba(255, 107, 0, 0.02);
@@ -175,15 +160,54 @@
       font-size: 0.8rem;
       margin-right: 16px;
       background: var(--paper);
-      flex-shrink: 0;
-      transition: all 0.2s;
     }
 
-    .option-item:hover .option-letter {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: #fff;
+    /* ── FORMULAIRE DE CAPTURE DE LEAD ── */
+    .lead-screen {
+      display: none;
     }
+    .lead-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .form-group input {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--paper);
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .submit-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--accent-dark); }
 
     /* ── ECRAN DE RESULTAT ── */
     .result-screen {
@@ -214,7 +238,6 @@
     .result-text {
       color: var(--muted);
       margin-bottom: 32px;
-      font-weight: 300;
     }
     .result-btn {
       display: inline-block;
@@ -225,10 +248,6 @@
       text-decoration: none;
       font-family: 'Syne', sans-serif;
       font-weight: 700;
-      transition: background 0.2s;
-    }
-    .result-btn:hover {
-      background: var(--accent);
     }
 
     /* ── FOOTER ── */
@@ -240,12 +259,6 @@
       color: var(--muted);
       background: var(--paper);
     }
-
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; flex-direction: column; gap: 16px; }
-      .nav-right-group { flex-direction: column; gap: 16px; }
-      .diagnostic-card { padding: 28px 20px; }
-    }
   </style>
 </head>
 <body>
@@ -254,7 +267,6 @@
     <a href="index.html" class="nav-logo">
       <img src="logo-ACONIA-appeldoffres-marchespublics-formation-accompagnement-externalisation.png" alt="Aconia Logo">
     </a>
-    
     <div class="nav-right-group">
       <div class="nav-links">
         <a href="index.html#a-propos">À propos</a>
@@ -279,9 +291,28 @@
         </div>
 
         <h2 class="question-title" id="question-text">Chargement de la question...</h2>
+        <div class="options-list" id="options-container"></div>
+      </div>
+
+      <div class="lead-screen" id="lead-zone">
+        <h2 class="question-title">🎯 Vos réponses sont enregistrées !</h2>
+        <p style="color: var(--muted); margin-bottom: 20px;">Renseignez vos coordonnées pour générer votre profil de maturité commerciale et obtenir votre score sur 100.</p>
         
-        <div class="options-list" id="options-container">
+        <form class="lead-form" id="lead-form-element" onsubmit="handleLeadSubmit(event)">
+          <div class="form-group">
+            <label for="user-firstname">Prénom</label>
+            <input type="text" id="user-firstname" required placeholder="Ex: Jean">
           </div>
+          <div class="form-group">
+            <label for="user-lastname">Nom</label>
+            <input type="text" id="user-lastname" required placeholder="Ex: Dupont">
+          </div>
+          <div class="form-group">
+            <label for="user-email">Adresse Email professionnelle</label>
+            <input type="email" id="user-email" required placeholder="Ex: jean.dupont@entreprise.fr">
+          </div>
+          <button type="submit" class="submit-btn">Découvrir mon score →</button>
+        </form>
       </div>
 
       <div class="result-screen" id="result-zone">
@@ -364,7 +395,7 @@
 
     function loadQuestion() {
       if (currentQuestionIndex >= questions.length) {
-        showResults();
+        goToLeadScreen();
         return;
       }
 
@@ -380,9 +411,8 @@
       const optionsContainer = document.getElementById("options-container");
       optionsContainer.innerHTML = "";
 
-      currentQuestion.options.forEach((option, index) => {
+      questions[currentQuestionIndex].options.forEach((option, index) => {
         const letter = String.fromCharCode(65 + index);
-        
         const button = document.createElement("button");
         button.className = "option-item";
         button.innerHTML = '<span class="option-letter">' + letter + '</span><span>' + option.text + '</span>';
@@ -392,15 +422,28 @@
           currentQuestionIndex++;
           loadQuestion();
         };
-
         optionsContainer.appendChild(button);
       });
     }
 
-    function showResults() {
+    function goToLeadScreen() {
+      // Masquer le quiz et afficher le formulaire
       document.getElementById("quiz-zone").style.display = "none";
-      document.getElementById("result-zone").style.display = "block";
+      document.getElementById("lead-zone").style.display = "block";
+    }
 
+    function handleLeadSubmit(event) {
+      event.preventDefault(); // Empêche le rechargement de la page
+      
+      // Ici, on pourrait récupérer les valeurs si besoin (ex: document.getElementById("user-email").value)
+      
+      // Passer à l'écran des résultats
+      document.getElementById("lead-zone").style.display = "none";
+      showResults();
+    }
+
+    function showResults() {
+      document.getElementById("result-zone").style.display = "block";
       document.getElementById("final-score-display").innerText = totalScore + "/100";
 
       const titleElement = document.getElementById("result-profile-title");
