@@ -53,13 +53,23 @@
       z-index: 100;
     }
     
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
-    .logo span { color: var(--accent); }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+    
+    .nav-right-group {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
     
     .nav-links {
       display: flex;
@@ -70,7 +80,7 @@
     nav a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 500;
       transition: color 0.2s;
     }
@@ -92,7 +102,7 @@
     }
 
     .hero {
-      padding: 80px 48px;
+      padding: 100px 48px;
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
@@ -123,6 +133,7 @@
       font-size: 1.25rem;
       color: var(--muted);
       max-width: 600px;
+      margin-bottom: 8px;
     }
 
     .main-cta {
@@ -144,7 +155,7 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
       width: 100%;
     }
     .form-control {
@@ -166,12 +177,17 @@
 <body>
 
   <nav>
-    <div class="logo">Aconia<span>.</span></div>
-    <div class="nav-links">
-      <a href="#a-propos">À propos</a>
-      <a href="#contact">Contact</a>
+    <a href="index.html" class="nav-logo">
+      <img src="image_259564.png" alt="Aconia Logo">
+    </a>
+    
+    <div class="nav-right-group">
+      <div class="nav-links">
+        <a href="#a-propos">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
     </div>
-    <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
   </nav>
 
   <section class="hero">
@@ -181,16 +197,16 @@
     <a href="diagnostic.html" class="main-cta">Faire le diagnostic gratuit →</a>
   </section>
 
-  <section id="a-propos" style="padding: 80px 48px; background: var(--card); border-top: 1px solid var(--border);">
+  <section id="a-propos" style="padding: 90px 48px; background: var(--card); border-top: 1px solid var(--border);">
     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
       <h2 style="font-size: 2.25rem; color: var(--ink); margin-bottom: 24px; font-weight: 800;">À propos d'ACONIA</h2>
-      <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.8; max-width: 700px; margin: 0 auto;">
+      <p style="font-size: 1.2rem; color: var(--muted); line-height: 1.8; max-width: 700px; margin: 0 auto;">
         <strong style="color: var(--ink);">ACONIA.FR</strong> est un site Internet spécialisé dans la formation et l’accompagnement des TPE sur les réponses aux appels d’offres et marchés publics.
       </p>
     </div>
   </section>
 
-  <section id="contact" style="padding: 80px 48px; background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <section id="contact" style="padding: 90px 48px; background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div style="max-width: 500px; margin: 0 auto;">
       <h2 style="font-size: 2.25rem; color: var(--ink); margin-bottom: 10px; text-align: center; font-weight: 800;">Contactez-nous</h2>
       <p style="text-align: center; color: var(--muted); margin-bottom: 35px; font-size: 1rem;">Une question ? Notre équipe vous répond dans les plus brefs délais.</p>
