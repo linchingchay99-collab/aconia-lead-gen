@@ -1,201 +1,426 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnostic de Maturité — Aconia</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #0B0F1A;
-    --paper: #F5F2EC;
-    --accent: #FF6B00; /* Orange Aconia */
-    --accent-dark: #E05E00;
-    --muted: #6B7280;
-    --border: #D6D0C4;
-    --green: #00A878;
-    --orange: #FF6B00;
-    --red: #CC2B2B;
-    --card: #FEFCF8;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic de Maturité — Aconia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --ink: #0B0F1A;
+      --paper: #F5F2EC;
+      --accent: #FF6B00; /* Orange Aconia */
+      --accent-dark: #E05E00;
+      --muted: #6B7280;
+      --border: #D6D0C4;
+      --green: #00A878;
+      --orange: #FF6B00;
+      --red: #CC2B2B;
+      --card: #FEFCF8;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.6;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
-  h1, h2, h3 {
-    font-family: 'Syne', sans-serif;
-    line-height: 1.15;
-  }
+    h1, h2, h3 {
+      font-family: 'Syne', sans-serif;
+      line-height: 1.15;
+    }
 
-  /* ── BARRE DE NAVIGATION (IDENTIQUE À L'ACCUEIL) ── */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 48px;
-    border-bottom: 1px solid var(--border);
-    background: var(--paper);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .nav-logo img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-  }
-  .nav-right-group {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-  }
-  .nav-links {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--ink); }
-  .nav-cta {
-    background: var(--ink);
-    color: var(--paper) !important;
-    padding: 10px 22px;
-    border-radius: 6px;
-    font-size: 0.875rem !important;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+    /* ── BARRE DE NAVIGATION ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--paper);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-right-group {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--accent);
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.875rem !important;
+      font-weight: 600;
+      text-decoration: none;
+    }
 
-  /* ── CONTENEUR DU DIAGNOSTIC ── */
-  .diagnostic-container {
-    max-width: 650px;
-    margin: 60px auto 90px;
-    padding: 0 24px;
-  }
+    /* ── CONTENEUR DU DIAGNOSTIC ── */
+    .diagnostic-container {
+      max-width: 650px;
+      margin: 60px auto 90px;
+      padding: 0 24px;
+    }
 
-  .diagnostic-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.03);
-  }
+    .diagnostic-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.03);
+    }
 
-  .progress-container {
-    margin-bottom: 32px;
-  }
-  .progress-text {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-  .progress-bar {
-    width: 100%;
-    height: 6px;
-    background: #E8EEFF;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    width: 15%; /* Progression exemple */
-    background: var(--accent);
-    border-radius: 3px;
-    transition: width 0.3s ease;
-  }
+    .progress-container {
+      margin-bottom: 32px;
+    }
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #E8EEFF;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
 
-  .question-title {
-    font-size: 1.4rem;
-    font-weight: 800;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-  }
+    .question-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
 
-  .options-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-  .option-item {
-    display: flex;
-    align-items: center;
-    padding: 16px 20px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.2s;
-    font-family: inherit;
-    font-size: 0.95rem;
-    text-align: left;
-    color: var(--ink);
-  }
+    .option-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.2s;
+      font-family: inherit;
+      font-size: 0.95rem;
+      text-align: left;
+      color: var(--ink);
+      width: 100%;
+    }
 
-  .option-item:hover {
-    border-color: var(--accent);
-    background: rgba(255, 107, 0, 0.02);
-  }
+    .option-item:hover {
+      border-color: var(--accent);
+      background: rgba(255, 107, 0, 0.02);
+    }
 
-  .option-letter {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    margin-right: 16px;
-    background: var(--paper);
-    flex-shrink: 0;
-  }
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-right: 16px;
+      background: var(--paper);
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
 
-  .option-item:hover .option-letter {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: #fff;
-  }
+    .option-item:hover .option-letter {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
 
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 40px 24px;
-    border-top: 1px solid var(--border);
-    font-size: 0.82rem;
-    color: var(--muted);
-    background: var(--paper);
-  }
+    /* ── ECRAN DE RESULTAT ── */
+    .result-screen {
+      display: none;
+      text-align: center;
+    }
+    .result-score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 8px solid #E8EEFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .result-score-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .result-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .result-text {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+    .result-btn {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .result-btn:hover {
+      background: var(--accent);
+    }
 
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; flex-direction: column; gap: 16px; }
-    .nav-right-group { flex-direction: column; gap: 16px; }
-    .diagnostic-card { padding: 28px 20px; }
-  }
-</style>
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--paper);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; flex-direction: column; gap: 16px; }
+      .nav-right-group { flex-direction: column; gap: 16px; }
+      .diagnostic-card { padding: 28px 20px; }
+    }
+  </style>
 </head>
 <body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo-ACONIA-appeldoffres-marchespublics-formation-accompagnement-externalisation.png" alt="Aconia Logo">
+    </a>
+    
+    <div class="nav-right-group">
+      <div class="nav-links">
+        <a href="index.html#a-propos">À propos</a>
+        <a href="index.html#contact">Contactez-nous</a>
+      </div>
+      <a href="diagnostic.html" class="nav-cta">Diagnostic en cours</a>
+    </div>
+  </nav>
+
+  <div class="diagnostic-container">
+    <div class="diagnostic-card">
+      
+      <div id="quiz-zone">
+        <div class="progress-container">
+          <div class="progress-text">
+            <span id="progress-question-num">Question 1 sur 6</span>
+            <span id="progress-percent">0% complété</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <h2 class="question-title" id="question-text">Chargement de la question...</h2>
+        
+        <div class="options-list" id="options-container">
+          </div>
+      </div>
+
+      <div class="result-screen" id="result-zone">
+        <div class="result-score-circle">
+          <div class="result-score-num" id="final-score-display">0</div>
+        </div>
+        <h2 class="result-title" id="result-profile-title">Analyse en cours...</h2>
+        <p class="result-text" id="result-profile-text">Vos réponses ont été traitées.</p>
+        <a href="index.html#contact" class="result-btn">Contacter un expert Aconia →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p style="margin-bottom:8px; font-family:'Syne',sans-serif; font-weight:700; font-size:1rem;">Aconia — Appels d'offres B2B</p>
+    <p>© 2026 Aconia · Tous droits réservés</p>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        title: "Combien d'appels d'offres répondez-vous par an ?",
+        options: [
+          { text: "Moins de 5", pts: 0 },
+          { text: "Entre 5 et 15", pts: 5 },
+          { text: "Entre 15 et 40", pts: 10 },
+          { text: "Plus de 40", pts: 15 }
+        ]
+      },
+      {
+        title: "Comment détectez-vous les appels d'offres qui vous correspondent ?",
+        options: [
+          { text: "Au fil de l'eau / bouche à oreille", pts: 0 },
+          { text: "Plateformes de marchés publics", pts: 5 },
+          { text: "Outil de veille dédié", pts: 10 },
+          { text: "Veille + réseau + ciblage proactif", pts: 15 }
+        ]
+      },
+      {
+        title: "Avez-vous un processus formalisé pour décider si vous répondez (GO/NOGO) ?",
+        options: [
+          { text: "Non, on répond à tout", pts: 0 },
+          { text: "Décision intuitive case par case", pts: 5 },
+          { text: "Critères informels partagés en équipe", pts: 10 },
+          { text: "Grille GO/NOGO structurée et validée", pts: 15 }
+        ]
+      },
+      {
+        title: "Comment construisez-vous vos réponses aux cahiers des charges ?",
+        options: [
+          { text: "Modèles génériques adaptés à la marge", pts: 0 },
+          { text: "Personnalisation partielle des réponses", pts: 7 },
+          { text: "Offre structurée + approche différenciée", pts: 14 },
+          { text: "Process complet : analyse approfondie et relecture", pts: 20 }
+        ]
+      },
+      {
+        title: "Quel est votre taux de succès actuel sur vos réponses ?",
+        options: [
+          { text: "Inférieur à 10 %", pts: 0 },
+          { text: "Entre 10 % et 25 %", pts: 7 },
+          { text: "Entre 25 % et 40 %", pts: 14 },
+          { text: "Plus de 40 %", pts: 20 }
+        ]
+      },
+      {
+        title: "Avez-vous un suivi structuré de vos dossiers (pipeline, KPIs) ?",
+        options: [
+          { text: "Aucun suivi formalisé", pts: 0 },
+          { text: "Tableau de bord basique", pts: 5 },
+          { text: "Suivi régulier + analyse des dossiers perdus", pts: 10 },
+          { text: "Pilotage complet + logique d'amélioration continue", pts: 15 }
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let totalScore = 0;
+
+    function loadQuestion() {
+      if (currentQuestionIndex >= questions.length) {
+        showResults();
+        return;
+      }
+
+      const currentQuestion = questions[currentQuestionIndex];
+      
+      const progressPercent = Math.round((currentQuestionIndex / questions.length) * 100);
+      document.getElementById("progress-question-num").innerText = "Question " + (currentQuestionIndex + 1) + " sur " + questions.length;
+      document.getElementById("progress-percent").innerText = progressPercent + "% complété";
+      document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+
+      document.getElementById("question-text").innerText = currentQuestion.title;
+
+      const optionsContainer = document.getElementById("options-container");
+      optionsContainer.innerHTML = "";
+
+      currentQuestion.options.forEach((option, index) => {
+        const letter = String.fromCharCode(65 + index);
+        
+        const button = document.createElement("button");
+        button.className = "option-item";
+        button.innerHTML = '<span class="option-letter">' + letter + '</span><span>' + option.text + '</span>';
+        
+        button.onclick = function() {
+          totalScore += option.pts;
+          currentQuestionIndex++;
+          loadQuestion();
+        };
+
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function showResults() {
+      document.getElementById("quiz-zone").style.display = "none";
+      document.getElementById("result-zone").style.display = "block";
+
+      document.getElementById("final-score-display").innerText = totalScore + "/100";
+
+      const titleElement = document.getElementById("result-profile-title");
+      const textElement = document.getElementById("result-profile-text");
+
+      if (totalScore <= 40) {
+        titleElement.innerText = "Profil Débutant : Marges importantes";
+        textElement.innerText = "Votre organisation n'est pas encore assez outillée pour performer régulièrement sur les marchés publics. En structurant votre veille et vos choix de dossiers, vos résultats peuvent grimper très vite.";
+      } else if (totalScore <= 70) {
+        titleElement.innerText = "Profil Intermédiaire : Des bases à consolider";
+        textElement.innerText = "Vous répondez régulièrement mais certains freins cachés (choix des dossiers, manque de personnalisation) font stagner votre taux de réussite. Des ajustements simples feront la différence.";
+      } else {
+        titleElement.innerText = "Profil Avancé : Excellente maîtrise !";
+        textElement.innerText = "Votre entreprise possède une vraie maturité stratégique sur les appels d'offres. L'enjeu est maintenant d'optimiser les derniers détails et d'automatiser vos processus pour maximiser vos gains.";
+      }
+    }
+
+    window.onload = function() {
+      loadQuestion();
+    };
+  </script>
+</body>
+</html>
