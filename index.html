@@ -29,7 +29,10 @@
     line-height: 1.6;
   }
 
-  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.15; }
+  h1, h2, h3, h4 {
+    font-family: 'Syne', sans-serif;
+    line-height: 1.15;
+  }
 
   /* ── NAV ── */
   nav {
@@ -43,13 +46,31 @@
     top: 0;
     z-index: 100;
   }
-  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
   .logo span { color: var(--accent); }
-  nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
   nav a:hover { color: var(--ink); }
-  .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 10px 22px; border-radius: 6px; font-size: 0.875rem !important; }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 0.875rem !important;
+  }
   .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
 
+  /* ── SECTIONS ── */
   section { max-width: 1080px; margin: 0 auto; padding: 80px 24px; }
 
   /* ── HERO ── */
@@ -74,9 +95,23 @@
     border-radius: 4px;
     margin-bottom: 24px;
   }
-  .hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 24px; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero p { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; max-width: 440px; font-weight: 300; }
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+    max-width: 440px;
+    font-weight: 300;
+  }
   .hero-cta {
     display: inline-block;
     background: var(--accent);
@@ -89,768 +124,918 @@
     font-size: 1rem;
     transition: all 0.2s;
     box-shadow: 0 4px 20px rgba(26,79,255,0.25);
-    cursor: pointer;
-    border: none;
   }
-  .hero-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(26,79,255,0.35); }
-  .hero-sub { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.82rem; color: var(--muted); }
+  .hero-cta:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(26,79,255,0.35);
+  }
+  .hero-sub {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
   .hero-sub span { font-weight: 500; }
 
-  .hero-visual { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+  /* Hero card */
+  .hero-visual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+  }
   .score-ring {
-    width: 120px; height: 120px; border-radius: 50%;
-    border: 8px solid #E8EEFF; border-top-color: var(--accent);
-    display: flex; align-items: center; justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 8px solid #E8EEFF;
+    border-top-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto 24px;
+    position: relative;
     animation: spin-slow 6s linear infinite;
   }
   @keyframes spin-slow { to { transform: rotate(360deg); } }
-  .score-inner { animation: counter-spin 6s linear infinite; text-align: center; }
-  @keyframes counter-spin { to { transform: rotate(-360deg); } }
-  .score-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
-  .score-label { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
-  .dimension-list { list-style: none; }
-  .dimension-list li { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
-  .dimension-list li:last-child { border-bottom: none; }
-  .dim-bar { width: 80px; height: 6px; background: #E8EEFF; border-radius: 3px; overflow: hidden; }
-  .dim-fill { height: 100%; border-radius: 3px; background: var(--accent); }
-
-  /* ── PROBLEM ── */
-  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-  .problem-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
-  .problem-icon { font-size: 1.5rem; margin-bottom: 16px; }
-  .problem-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
-  .problem-card p { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
-
-  .section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  section h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
-  section > p { color: var(--muted); max-width: 560px; font-weight: 300; }
-
-  footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); }
-
-  /* ════════════════════════════════════════
-     QUIZ INTERACTIF
-  ════════════════════════════════════════ */
-  #quiz-wrapper {
-    display: none;
-    min-height: 100vh;
-    background: var(--ink);
-    color: #fff;
-  }
-
-  .quiz-header {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 48px 24px 0;
+  .score-inner {
+    animation: counter-spin 6s linear infinite;
     text-align: center;
   }
-  .quiz-header .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.45);
-    font-size: 0.85rem;
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: 'DM Sans', sans-serif;
-    margin-bottom: 32px;
-    transition: color 0.2s;
-    padding: 0;
-  }
-  .quiz-header .back-btn:hover { color: rgba(255,255,255,0.8); }
-
-  /* Progress bar */
-  .progress-wrap { margin-bottom: 40px; }
-  .progress-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 10px; }
-  .progress-track { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
-
-  /* Question */
-  .quiz-body { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
-  .question-block { display: none; animation: fadeUp 0.35s ease; }
-  .question-block.active { display: block; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-
-  .q-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  .q-question {
+  @keyframes counter-spin { to { transform: rotate(-360deg); } }
+  .score-num {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 32px;
-    line-height: 1.3;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
   }
+  .score-label { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
 
-  .options-list { display: flex; flex-direction: column; gap: 10px; }
-  .option-btn {
-    width: 100%;
-    text-align: left;
-    background: rgba(255,255,255,0.04);
-    border: 1.5px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 16px 20px;
-    color: rgba(255,255,255,0.8);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.97rem;
-    cursor: pointer;
-    transition: all 0.18s;
+  .dimension-list { list-style: none; }
+  .dimension-list li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
   }
-  .option-btn:hover { background: rgba(26,79,255,0.12); border-color: var(--accent); color: #fff; }
-  .option-btn.selected { background: rgba(26,79,255,0.18); border-color: var(--accent); color: #fff; }
-  .option-btn .opt-check {
-    width: 20px; height: 20px; border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.2);
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.18s;
+  .dimension-list li:last-child { border-bottom: none; }
+  .dim-bar {
+    width: 80px;
+    height: 6px;
+    background: #E8EEFF;
+    border-radius: 3px;
+    overflow: hidden;
   }
-  .option-btn.selected .opt-check { background: var(--accent); border-color: var(--accent); }
-  .option-btn.selected .opt-check::after { content: '✓'; font-size: 11px; color: #fff; font-weight: 700; }
+  .dim-fill { height: 100%; border-radius: 3px; background: var(--accent); }
 
-  /* Contact form step */
-  .contact-form { display: flex; flex-direction: column; gap: 14px; }
-  .form-field { display: flex; flex-direction: column; gap: 6px; }
-  .form-field label { font-size: 0.82rem; color: rgba(255,255,255,0.55); font-weight: 500; }
-  .form-field input {
-    background: rgba(255,255,255,0.05);
-    border: 1.5px solid rgba(255,255,255,0.12);
-    border-radius: 8px;
-    padding: 13px 16px;
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
+  /* ── PROBLEM ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .problem-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .problem-icon {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  .problem-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .problem-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* ── QUIZ SECTION ── */
+  .quiz-section { background: var(--ink); color: var(--paper); }
+  .quiz-section-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .section-tag {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .quiz-section-inner h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    max-width: 600px;
+    margin-bottom: 16px;
+  }
+  .quiz-section-inner > p {
+    color: rgba(255,255,255,0.55);
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .questions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .q-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .q-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .q-text {
     font-size: 0.95rem;
-    transition: border-color 0.18s;
-    outline: none;
-  }
-  .form-field input:focus { border-color: var(--accent); }
-  .form-field input::placeholder { color: rgba(255,255,255,0.25); }
-
-  /* Nav buttons */
-  .quiz-nav { display: flex; justify-content: flex-end; margin-top: 28px; gap: 12px; }
-  .btn-next {
-    background: var(--accent);
+    font-weight: 500;
     color: #fff;
-    border: none;
-    padding: 14px 32px;
-    border-radius: 8px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .q-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .q-opt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .q-pts {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(26,79,255,0.15);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  /* ── SCORING ── */
+  .scoring-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 0.9rem;
+  }
+  .scoring-table th {
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .scoring-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .scoring-table tr:last-child td { border-bottom: none; }
+  .pts-badge {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 16px rgba(26,79,255,0.3);
+    font-size: 0.8rem;
+    background: #E8EEFF;
+    color: var(--accent);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
   }
-  .btn-next:hover { background: var(--accent-dark); transform: translateY(-1px); }
-  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
 
   /* ── RESULTS ── */
-  #results-screen { display: none; animation: fadeUp 0.4s ease; }
-  .results-header { max-width: 720px; margin: 0 auto; padding: 60px 24px 0; text-align: center; }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .result-card {
+    border-radius: 14px;
+    padding: 32px 28px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .result-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .result-low::before { background: var(--red); }
+  .result-mid::before { background: var(--orange); }
+  .result-high::before { background: var(--green); }
 
-  .score-reveal {
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    margin: 0 auto 32px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  .result-score {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .result-low .result-score { color: var(--red); }
+  .result-mid .result-score { color: var(--orange); }
+  .result-high .result-score { color: var(--green); }
+
+  .result-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--muted);
+  }
+  .result-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .result-card p {
+    font-size: 0.87rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .result-items {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .result-items li {
+    font-size: 0.84rem;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .result-items li:last-child { border-bottom: none; }
+  .result-items li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .result-cta-btn {
+    display: block;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .result-low .result-cta-btn { background: var(--red); color: #fff; }
+  .result-mid .result-cta-btn { background: var(--orange); color: #fff; }
+  .result-high .result-cta-btn { background: var(--green); color: #fff; }
+  .result-cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── CONVERSION STRATEGY ── */
+  .conversion-section {
+    background: #F0F3FF;
+    border-top: 1px solid #D0D9FF;
+    border-bottom: 1px solid #D0D9FF;
+  }
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
     position: relative;
   }
-  .score-reveal svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
-  .score-reveal-num {
+  .funnel::before {
+    content: '';
+    position: absolute;
+    left: 35px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .funnel-step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding-bottom: 36px;
+    position: relative;
+  }
+  .funnel-num {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
     font-family: 'Syne', sans-serif;
-    font-size: 3rem;
     font-weight: 800;
-    line-height: 1;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     position: relative;
     z-index: 1;
   }
-  .score-reveal-sub { font-size: 0.8rem; color: rgba(255,255,255,0.45); position: relative; z-index: 1; }
-
-  .result-profile-badge {
-    display: inline-block;
-    padding: 6px 18px;
-    border-radius: 100px;
-    font-size: 0.78rem;
+  .funnel-content h3 {
+    font-size: 1.05rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+  .funnel-content p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 560px;
+  }
+  .funnel-tag {
+    display: inline-block;
+    background: #E8EEFF;
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 8px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    letter-spacing: 0.07em;
   }
-  .badge-low { background: rgba(204,43,43,0.15); color: #FF6B6B; border: 1px solid rgba(204,43,43,0.3); }
-  .badge-mid { background: rgba(232,112,64,0.15); color: #F59E0B; border: 1px solid rgba(232,112,64,0.3); }
-  .badge-high { background: rgba(0,168,120,0.15); color: #34D399; border: 1px solid rgba(0,168,120,0.3); }
 
-  .result-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 14px; }
-  .result-desc { color: rgba(255,255,255,0.55); font-size: 1rem; font-weight: 300; max-width: 520px; margin: 0 auto 48px; line-height: 1.7; }
-
-  /* Dimension breakdown */
-  .dimensions-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-  .dim-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
-  .dim-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
-  .dim-name { font-size: 0.87rem; color: rgba(255,255,255,0.7); min-width: 160px; }
-  .dim-track { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
-  .dim-bar-fill { height: 100%; border-radius: 3px; background: var(--accent); width: 0; transition: width 1s ease 0.3s; }
-  .dim-score { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.5); min-width: 50px; text-align: right; }
-
-  /* Recommendations */
-  .reco-wrap { max-width: 680px; margin: 48px auto 0; padding: 0 24px; }
-  .reco-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
-  .reco-list { display: flex; flex-direction: column; gap: 10px; }
-  .reco-item {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    padding: 16px 20px;
-    display: flex; align-items: flex-start; gap: 14px;
+  /* ── LANDING PAGE COPY ── */
+  .copy-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
   }
-  .reco-arrow { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .reco-item p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
-
-  /* CTA block */
-  .cta-wrap { max-width: 680px; margin: 48px auto 80px; padding: 0 24px; text-align: center; }
-  .cta-box { background: rgba(26,79,255,0.1); border: 1px solid rgba(26,79,255,0.25); border-radius: 16px; padding: 40px 32px; }
-  .cta-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
-  .cta-box p { color: rgba(255,255,255,0.55); font-size: 0.92rem; margin-bottom: 28px; font-weight: 300; }
-  .cta-rdv {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 16px 36px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: 'Syne', sans-serif;
+  .copy-block h3 {
+    font-size: 0.75rem;
     font-weight: 700;
-    font-size: 1rem;
-    transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(26,79,255,0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
   }
-  .cta-rdv:hover { background: var(--accent-dark); transform: translateY(-2px); }
-  .cta-restart { display: block; margin-top: 16px; color: rgba(255,255,255,0.35); font-size: 0.82rem; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; transition: color 0.2s; }
-  .cta-restart:hover { color: rgba(255,255,255,0.6); }
+  .copy-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--ink);
+    white-space: pre-wrap;
+    font-weight: 300;
+  }
+  .copy-text strong { font-weight: 600; }
+  .copy-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header { margin-bottom: 8px; }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  section h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  section > p {
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    background: var(--border);
+    padding: 4px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-bottom: 32px;
+  }
+  .tab-btn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tab-btn.active {
+    background: var(--card);
+    color: var(--ink);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
-    .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; gap: 40px; }
     .hero-visual { display: none; }
-    .problem-grid { grid-template-columns: 1fr; }
+    .problem-grid, .results-grid { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
     section { padding: 60px 20px; }
-    .dim-name { min-width: 120px; font-size: 0.8rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAV
-════════════════════════════════════════ -->
+<!-- NAV -->
 <nav>
   <div class="logo">Aco<span>nia</span></div>
-  <div class="nav-links" style="display:flex;gap:32px;align-items:center;">
-    <a href="#probleme">Pourquoi ce diagnostic ?</a>
-    <a href="#" onclick="startQuiz(); return false;" class="nav-cta">Faire le diagnostic →</a>
+  <div style="display:flex;gap:32px;align-items:center;">
+    <a href="#quiz">Le questionnaire</a>
+    <a href="#scoring">Le scoring</a>
+    <a href="#resultats">Les résultats</a>
+    <a href="diagnostic.html" class="nav-cta">Accéder au diagnostic →</a>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════
-     PAGE D'ACCUEIL
-════════════════════════════════════════ -->
-<div id="homepage">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div>
-      <div class="hero-badge">Outil de diagnostic gratuit</div>
-      <h1>Votre organisation est-elle <em>prête</em> à gagner des appels d'offres ?</h1>
-      <p>En 4 minutes, évaluez votre maturité sur les appels d'offres B2B et identifiez vos leviers prioritaires pour augmenter votre taux de succès.</p>
-      <button onclick="startQuiz()" class="hero-cta">Faire le diagnostic gratuit →</button>
-      <div class="hero-sub">
-        <span>✓ 7 questions</span>
-        &nbsp;·&nbsp;
-        <span>Résultats immédiats</span>
-        &nbsp;·&nbsp;
-        <span>Sans engagement</span>
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div>
+    <div class="hero-badge">Outil de diagnostic gratuit</div>
+    <h1>Votre organisation est-elle <em>prête</em> à gagner des appels d'offres ?</h1>
+    <p>En 4 minutes, évaluez votre maturité sur les appels d'offres B2B et identifiez vos leviers prioritaires pour augmenter votre taux de succès.</p>
+    <a href="diagnostic.html" class="hero-cta">Faire le diagnostic gratuit →</a>
+    <div class="hero-sub">
+      <span>✓ 7 questions</span>
+      &nbsp;·&nbsp;
+      <span>Résultats immédiats</span>
+      &nbsp;·&nbsp;
+      <span>Sans engagement</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="score-ring">
+      <div class="score-inner">
+        <div class="score-num">68</div>
+        <div class="score-label">/100</div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="score-ring">
-        <div class="score-inner">
-          <div class="score-num">68</div>
-          <div class="score-label">/100</div>
-        </div>
+    <ul class="dimension-list">
+      <li><span>Veille & détection</span><div class="dim-bar"><div class="dim-fill" style="width:45%"></div></div></li>
+      <li><span>Qualification GO/NOGO</span><div class="dim-bar"><div class="dim-fill" style="width:80%"></div></div></li>
+      <li><span>Structuration de l'offre</span><div class="dim-bar"><div class="dim-fill" style="width:60%"></div></div></li>
+      <li><span>Pilotage commercial</span><div class="dim-bar"><div class="dim-fill" style="width:70%"></div></div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROBLEM SECTION -->
+<section id="probleme">
+  <div class="section-eyebrow">Pourquoi ce diagnostic ?</div>
+  <h2>La plupart des entreprises perdent des appels d'offres pour les mauvaises raisons</h2>
+  <p>Pas par manque de compétences — mais par manque de méthode. Ce diagnostic vous aide à identifier exactement où vous perdez du terrain.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-icon">📡</div>
+      <h3>Détection tardive</h3>
+      <p>Les opportunités sont identifiées trop tard pour construire une offre différenciée et crédible.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📋</div>
+      <h3>Offres trop génériques</h3>
+      <p>Les réponses ne parlent pas au décideur. Elles répondent au cahier des charges, pas aux enjeux réels.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🎯</div>
+      <h3>Mauvais filtrage GO/NOGO</h3>
+      <p>On répond à tout par principe, sans distinguer les appels d'offres qui méritent un investissement sérieux.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ SECTION -->
+<div class="quiz-section" id="quiz">
+<div class="quiz-section-inner">
+  <div class="section-tag">Questionnaire Typeform — Prêt à copier</div>
+  <h2>Les 7 questions du diagnostic</h2>
+  <p>Ce questionnaire est conçu pour qualifier précisément le niveau de maturité commercial d'un prospect sur les appels d'offres B2B.</p>
+
+  <div class="questions-grid">
+
+    <div class="q-card">
+      <div class="q-num">Q1 — CONTEXTE (non noté)</div>
+      <div class="q-text">Quelle est votre activité principale ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Services / Conseil</span><span class="q-pts">Filtrage</span></div>
+        <div class="q-opt"><span>Industrie / Fabrication</span><span class="q-pts">Filtrage</span></div>
+        <div class="q-opt"><span>IT / Tech / SaaS</span><span class="q-pts">Filtrage</span></div>
+        <div class="q-opt"><span>BTP / Travaux</span><span class="q-pts">Filtrage</span></div>
+        <div class="q-opt"><span>Autre</span><span class="q-pts">Filtrage</span></div>
       </div>
-      <ul class="dimension-list">
-        <li><span>Veille & détection</span><div class="dim-bar"><div class="dim-fill" style="width:45%"></div></div></li>
-        <li><span>Qualification GO/NOGO</span><div class="dim-bar"><div class="dim-fill" style="width:80%"></div></div></li>
-        <li><span>Structuration de l'offre</span><div class="dim-bar"><div class="dim-fill" style="width:60%"></div></div></li>
-        <li><span>Pilotage commercial</span><div class="dim-bar"><div class="dim-fill" style="width:70%"></div></div></li>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Q2 — VOLUME (15 pts)</div>
+      <div class="q-text">Combien d'appels d'offres répondez-vous par an ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Moins de 5</span><span class="q-pts">0 pt</span></div>
+        <div class="q-opt"><span>Entre 5 et 15</span><span class="q-pts">5 pts</span></div>
+        <div class="q-opt"><span>Entre 15 et 40</span><span class="q-pts">10 pts</span></div>
+        <div class="q-opt"><span>Plus de 40</span><span class="q-pts">15 pts</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Q3 — VEILLE (15 pts)</div>
+      <div class="q-text">Comment détectez-vous les appels d'offres qui vous correspondent ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Au fil de l'eau / bouche à oreille</span><span class="q-pts">0 pt</span></div>
+        <div class="q-opt"><span>Plateformes (BOAMP, Marchés Publics…)</span><span class="q-pts">5 pts</span></div>
+        <div class="q-opt"><span>Outil de veille dédié</span><span class="q-pts">10 pts</span></div>
+        <div class="q-opt"><span>Veille + réseau + ciblage proactif</span><span class="q-pts">15 pts</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Q4 — SÉLECTION (15 pts)</div>
+      <div class="q-text">Avez-vous un processus formalisé pour décider si vous répondez à un AO (GO/NOGO) ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Non, on répond à tout</span><span class="q-pts">0 pt</span></div>
+        <div class="q-opt"><span>Décision intuitive case par case</span><span class="q-pts">5 pts</span></div>
+        <div class="q-opt"><span>Critères informels partagés en équipe</span><span class="q-pts">10 pts</span></div>
+        <div class="q-opt"><span>Grille GO/NOGO structurée et validée</span><span class="q-pts">15 pts</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Q5 — RÉDACTION (20 pts)</div>
+      <div class="q-text">Comment construisez-vous vos réponses aux appels d'offres ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Modèles génériques adaptés à la marge</span><span class="q-pts">0 pt</span></div>
+        <div class="q-opt"><span>Personnalisation partielle des réponses</span><span class="q-pts">7 pts</span></div>
+        <div class="q-opt"><span>Offre structurée + approche différenciée</span><span class="q-pts">14 pts</span></div>
+        <div class="q-opt"><span>Process complet : analyse, diff., validation</span><span class="q-pts">20 pts</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Q6 — TAUX DE SUCCÈS (20 pts)</div>
+      <div class="q-text">Quel est votre taux de succès actuel sur les AO auxquels vous répondez ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Inférieur à 10 %</span><span class="q-pts">0 pt</span></div>
+        <div class="q-opt"><span>Entre 10 % et 25 %</span><span class="q-pts">7 pts</span></div>
+        <div class="q-opt"><span>Entre 25 % et 40 %</span><span class="q-pts">14 pts</span></div>
+        <div class="q-opt"><span>Plus de 40 %</span><span class="q-pts">20 pts</span></div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Q7 — PILOTAGE (15 pts)</div>
+      <div class="q-text">Avez-vous un suivi structuré de vos AO (pipeline, KPIs, retours d'expérience) ?</div>
+      <div class="q-options">
+        <div class="q-opt"><span>Aucun suivi formalisé</span><span class="q-pts">0 pt</span></div>
+        <div class="q-opt"><span>Tableau de bord basique</span><span class="q-pts">5 pts</span></div>
+        <div class="q-opt"><span>Suivi régulier + analyse des perdus</span><span class="q-pts">10 pts</span></div>
+        <div class="q-opt"><span>Pilotage complet + amélioration continue</span><span class="q-pts">15 pts</span></div>
+      </div>
+    </div>
+
+    <div class="q-card" style="background:rgba(26,79,255,0.08);border-color:rgba(26,79,255,0.25);">
+      <div class="q-num" style="color:var(--accent);">Q8 — COORDONNÉES (CTA)</div>
+      <div class="q-text">Où souhaitez-vous recevoir votre rapport complet ?</div>
+      <div class="q-options">
+        <div class="q-opt" style="background:rgba(26,79,255,0.1)"><span>📧 Prénom / Nom</span><span class="q-pts">Requis</span></div>
+        <div class="q-opt" style="background:rgba(26,79,255,0.1)"><span>📧 Email professionnel</span><span class="q-pts">Requis</span></div>
+        <div class="q-opt" style="background:rgba(26,79,255,0.1)"><span>🏢 Entreprise</span><span class="q-pts">Requis</span></div>
+        <div class="q-opt" style="background:rgba(26,79,255,0.1)"><span>📞 Téléphone</span><span class="q-pts">Optionnel</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- SCORING TABLE -->
+<section id="scoring">
+  <div class="section-eyebrow">Système de scoring</div>
+  <h2>Comment le score est calculé</h2>
+  <p>Chaque question est pondérée selon son impact réel sur le taux de succès en appels d'offres. Total : 100 points.</p>
+
+  <table class="scoring-table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Dimension évaluée</th>
+        <th>Points max</th>
+        <th>Justification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Q1</td>
+        <td>Contexte / Segmentation</td>
+        <td><span class="pts-badge">0 pt</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Sert uniquement à personnaliser les résultats et qualifier le secteur.</td>
+      </tr>
+      <tr>
+        <td>Q2</td>
+        <td>Volume & exposition aux AO</td>
+        <td><span class="pts-badge">15 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Un volume faible révèle un sous-investissement commercial sur ce canal.</td>
+      </tr>
+      <tr>
+        <td>Q3</td>
+        <td>Veille & détection</td>
+        <td><span class="pts-badge">15 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Détecter tôt = plus de temps pour construire une offre gagnante.</td>
+      </tr>
+      <tr>
+        <td>Q4</td>
+        <td>Processus GO/NOGO</td>
+        <td><span class="pts-badge">15 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Répondre à tout dilue les ressources et fait baisser le taux de succès.</td>
+      </tr>
+      <tr>
+        <td>Q5</td>
+        <td>Qualité de rédaction des offres</td>
+        <td><span class="pts-badge">20 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">C'est le levier n°1 de différenciation. Fortement pondéré.</td>
+      </tr>
+      <tr>
+        <td>Q6</td>
+        <td>Taux de succès actuel</td>
+        <td><span class="pts-badge">20 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Indicateur de résultat direct. Mesure l'efficacité globale réelle.</td>
+      </tr>
+      <tr>
+        <td>Q7</td>
+        <td>Pilotage & amélioration continue</td>
+        <td><span class="pts-badge">15 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Sans suivi, pas de progression. Clé pour monter en maturité.</td>
+      </tr>
+      <tr style="background:#F0F3FF;">
+        <td colspan="2"><strong>TOTAL</strong></td>
+        <td><span class="pts-badge" style="background:var(--accent);color:#fff;">100 pts</span></td>
+        <td style="font-size:0.82rem;color:var(--muted)">Score calculé automatiquement à la fin du quiz.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- RESULTS SECTION -->
+<section id="resultats">
+  <div class="section-eyebrow">Pages de résultats</div>
+  <h2>3 profils, 3 messages personnalisés</h2>
+  <p>Chaque score déclenche une page de résultats différente, avec un message adapté et un appel à l'action spécifique.</p>
+
+  <div class="results-grid">
+
+    <!-- LOW -->
+    <div class="result-card result-low">
+      <div class="result-score">0 – 40</div>
+      <div class="result-label">Profil Débutant</div>
+      <h3>Vous partez avec un désavantage structurel</h3>
+      <p>Votre organisation n'est pas encore outillée pour compétir efficacement sur les appels d'offres. La bonne nouvelle : les marges de progression sont importantes et rapides à activer.</p>
+      <ul class="result-items">
+        <li>Mettre en place une veille AO structurée</li>
+        <li>Créer une grille GO/NOGO simple</li>
+        <li>Former votre équipe à la rédaction d'offres</li>
+        <li>Désigner un référent AO dans votre structure</li>
       </ul>
+      <a href="#contact" class="result-cta-btn">Parler à un expert →</a>
+    </div>
+
+    <!-- MID -->
+    <div class="result-card result-mid">
+      <div class="result-score">40 – 70</div>
+      <div class="result-label">Profil Intermédiaire</div>
+      <h3>Vous avez des bases solides, mais des freins cachés</h3>
+      <p>Votre organisation répond aux appels d'offres avec une certaine régularité, mais des inefficacités dans votre processus vous font perdre des marchés que vous méritez.</p>
+      <ul class="result-items">
+        <li>Affiner votre critère de sélection GO/NOGO</li>
+        <li>Renforcer la personnalisation de vos offres</li>
+        <li>Analyser systématiquement vos AO perdus</li>
+        <li>Structurer un pipeline AO dédié</li>
+      </ul>
+      <a href="#contact" class="result-cta-btn">Voir les quick-wins →</a>
+    </div>
+
+    <!-- HIGH -->
+    <div class="result-card result-high">
+      <div class="result-score">70 – 100</div>
+      <div class="result-label">Profil Avancé</div>
+      <h3>Vous êtes mature — passez à la vitesse supérieure</h3>
+      <p>Votre organisation a une vraie maturité sur les appels d'offres. L'enjeu est maintenant de scaler ce qui fonctionne et d'identifier les 5–10 % de progression qui feront la différence.</p>
+      <ul class="result-items">
+        <li>Identifier les segments AO les plus rentables</li>
+        <li>Automatiser votre veille et votre pipeline</li>
+        <li>Bâtir des partenariats stratégiques</li>
+        <li>Passer d'un taux de 30 % à 50 %+</li>
+      </ul>
+      <a href="#contact" class="result-cta-btn">Optimiser la performance →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONVERSION STRATEGY -->
+<div class="conversion-section">
+<section id="conversion">
+  <div class="section-eyebrow">Stratégie de conversion</div>
+  <h2>Du quiz au rendez-vous commercial</h2>
+  <p>Chaque lead est qualifié automatiquement. Voici comment transformer un score en opportunité commerciale.</p>
+
+  <div class="funnel">
+    <div class="funnel-step">
+      <div class="funnel-num">1</div>
+      <div class="funnel-content">
+        <h3>Résultats immédiats sur la page de fin Typeform</h3>
+        <p>Le prospect voit son score, son profil et 4 recommandations personnalisées. Le rapport complet est envoyé par email dans la foulée (automation Zapier/Make → CRM).</p>
+        <span class="funnel-tag">Déclencheur : fin du quiz</span>
+      </div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">2</div>
+      <div class="funnel-content">
+        <h3>Email de suivi J+0 (automatique)</h3>
+        <p>Objet : "Votre Score Maturité AO : [score]/100 — 3 actions prioritaires". Corps : récapitulatif du score + lien Calendly segmenté selon le profil (urgence pour les scores faibles, conseil stratégique pour les avancés).</p>
+        <span class="funnel-tag">Outil : HubSpot / Brevo / ActiveCampaign</span>
+      </div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">3</div>
+      <div class="funnel-content">
+        <h3>Relance commerciale J+3 (manuelle ou séquencée)</h3>
+        <p>Le commercial reçoit une alerte avec le profil et le score du lead. Il envoie un message court et personnalisé avec une proposition de 30 min de conseil offert, sans pitch produit.</p>
+        <span class="funnel-tag">Priorité : scores 30–65 (zone d'urgence ressentie)</span>
+      </div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">4</div>
+      <div class="funnel-content">
+        <h3>Nurturing J+7 et J+21 (non-convertis)</h3>
+        <p>Envoi de 2 contenus ciblés selon le profil : benchmark sectoriel, guide de rédaction, ou étude de cas. L'objectif est de maintenir la relation jusqu'au moment d'achat.</p>
+        <span class="funnel-tag">Contenu adapté au secteur (Q1)</span>
+      </div>
+    </div>
+    <div class="funnel-step" style="padding-bottom:0">
+      <div class="funnel-num" style="background:var(--green)">✓</div>
+      <div class="funnel-content">
+        <h3>Rendez-vous qualifié</h3>
+        <p>Le commercial arrive en réunion avec le score du prospect, son profil et ses points de douleur identifiés. La conversation est déjà contextualisée avant même le premier mot.</p>
+        <span class="funnel-tag">Objectif : 15–25 % de conversion quiz → RDV</span>
+      </div>
     </div>
   </div>
+</section>
+</div>
 
-  <!-- PROBLEM -->
-  <section id="probleme">
-    <div class="section-eyebrow">Pourquoi ce diagnostic ?</div>
-    <h2>La plupart des entreprises perdent des appels d'offres pour les mauvaises raisons</h2>
-    <p>Pas par manque de compétences — mais par manque de méthode. Ce diagnostic vous aide à identifier exactement où vous perdez du terrain.</p>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">📡</div>
-        <h3>Détection tardive</h3>
-        <p>Les opportunités sont identifiées trop tard pour construire une offre différenciée et crédible.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">📋</div>
-        <h3>Offres trop génériques</h3>
-        <p>Les réponses ne parlent pas au décideur. Elles répondent au cahier des charges, pas aux enjeux réels.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🎯</div>
-        <h3>Mauvais filtrage GO/NOGO</h3>
-        <p>On répond à tout par principe, sans distinguer les appels d'offres qui méritent un investissement sérieux.</p>
-      </div>
-    </div>
-  </section>
+<!-- LANDING PAGE COPY -->
+<section id="landing">
+  <div class="section-eyebrow">Textes prêts à copier</div>
+  <h2>Landing page — Contenu complet</h2>
+  <p>Tous les textes ci-dessous sont prêts à être utilisés directement dans votre page web ou Typeform.</p>
 
-  <footer>
-    <p style="margin-bottom:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;">Aconia — Appels d'offres B2B</p>
-    <p>Diagnostic gratuit · Résultats immédiats · Sans engagement</p>
-    <p style="margin-top:12px;font-size:0.75rem;">© 2025 Aconia · Tous droits réservés</p>
-  </footer>
-
-</div><!-- /#homepage -->
-
-
-<!-- ═══════════════════════════════════════
-     QUIZ INTERACTIF
-════════════════════════════════════════ -->
-<div id="quiz-wrapper">
-
-  <div class="quiz-header">
-    <button class="back-btn" onclick="backToHome()">← Retour à l'accueil</button>
-    <div class="progress-wrap">
-      <div class="progress-meta">
-        <span id="step-label">Question 1 sur 8</span>
-        <span id="step-pct">0 %</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-      </div>
-    </div>
+  <div class="copy-block">
+    <h3>Titre principal (H1)</h3>
+    <div class="copy-text">Votre organisation est-elle <strong>prête à gagner des appels d'offres ?</strong></div>
+    <div class="copy-note">Variante A : "Testez votre maturité AO en 4 minutes" | Variante B : "Découvrez pourquoi vous perdez des marchés que vous mériteriez de gagner"</div>
   </div>
 
-  <div class="quiz-body">
+  <div class="copy-block">
+    <h3>Sous-titre / Accroche</h3>
+    <div class="copy-text">En répondant à 7 questions ciblées, obtenez votre <strong>Score de Maturité Appels d'Offres</strong> et un plan d'action personnalisé pour augmenter votre taux de succès.
 
-    <!-- Q1 — Contexte -->
-    <div class="question-block active" id="q-0">
-      <div class="q-label">Question 1 · Contexte</div>
-      <div class="q-question">Quelle est votre activité principale ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 0, 0)"><span>Services / Conseil</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 0, 0)"><span>Industrie / Fabrication</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 0, 0)"><span>IT / Tech / SaaS</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 0, 0)"><span>BTP / Travaux</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 0, 0)"><span>Autre</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-0" onclick="nextQuestion(0)" disabled>Continuer →</button></div>
-    </div>
+Gratuit. Sans engagement. Résultats immédiats.</div>
+  </div>
 
-    <!-- Q2 — Volume -->
-    <div class="question-block" id="q-1">
-      <div class="q-label">Question 2 · Volume — 15 pts</div>
-      <div class="q-question">Combien d'appels d'offres traitez-vous par an ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 1, 0)"><span>Moins de 5</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 1, 5)"><span>Entre 5 et 15</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 1, 10)"><span>Entre 15 et 40</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 1, 15)"><span>Plus de 40</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-1" onclick="nextQuestion(1)" disabled>Continuer →</button></div>
-    </div>
+  <div class="copy-block">
+    <h3>Section "Ce que vous allez obtenir"</h3>
+    <div class="copy-text"><strong>Un diagnostic en 4 minutes chrono</strong>
+Pas de formulaire interminable. 7 questions concrètes sur votre fonctionnement actuel.
 
-    <!-- Q3 — Veille -->
-    <div class="question-block" id="q-2">
-      <div class="q-label">Question 3 · Veille — 15 pts</div>
-      <div class="q-question">Comment détectez-vous les appels d'offres qui vous correspondent ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 2, 0)"><span>Au fil de l'eau / bouche à oreille</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 2, 5)"><span>Plateformes (BOAMP, Marchés Publics…)</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 2, 10)"><span>Outil de veille dédié</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 2, 15)"><span>Veille + réseau + ciblage proactif</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-2" onclick="nextQuestion(2)" disabled>Continuer →</button></div>
-    </div>
+<strong>Votre score sur 100 avec une analyse par dimension</strong>
+Veille, sélection, rédaction, pilotage : vous saurez exactement où vous en êtes.
 
-    <!-- Q4 — Sélection -->
-    <div class="question-block" id="q-3">
-      <div class="q-label">Question 4 · Sélection — 15 pts</div>
-      <div class="q-question">Avez-vous un processus formalisé pour décider si vous répondez à un AO (GO/NOGO) ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 3, 0)"><span>Non, on répond à tout</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 3, 5)"><span>Décision intuitive case par case</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 3, 10)"><span>Critères informels partagés en équipe</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 3, 15)"><span>Grille GO/NOGO structurée et validée</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-3" onclick="nextQuestion(3)" disabled>Continuer →</button></div>
-    </div>
+<strong>Un plan d'action prioritaire adapté à votre profil</strong>
+3 à 5 actions concrètes à fort impact, ordonnées par priorité.
 
-    <!-- Q5 — Rédaction -->
-    <div class="question-block" id="q-4">
-      <div class="q-label">Question 5 · Rédaction — 20 pts</div>
-      <div class="q-question">Comment construisez-vous vos réponses aux appels d'offres ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 4, 0)"><span>Modèles génériques adaptés à la marge</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 4, 7)"><span>Personnalisation partielle des réponses</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 4, 14)"><span>Offre structurée + approche différenciée</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 4, 20)"><span>Process complet : analyse, différenciation, validation</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-4" onclick="nextQuestion(4)" disabled>Continuer →</button></div>
-    </div>
+<strong>Un accès à un expert si vous le souhaitez</strong>
+Pas de démarchage intempestif. Une proposition de 30 minutes offertes pour aller plus loin.</div>
+  </div>
 
-    <!-- Q6 — Taux de succès -->
-    <div class="question-block" id="q-5">
-      <div class="q-label">Question 6 · Taux de succès — 20 pts</div>
-      <div class="q-question">Quel est votre taux de succès actuel sur les AO auxquels vous répondez ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 5, 0)"><span>Inférieur à 10 %</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 5, 7)"><span>Entre 10 % et 25 %</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 5, 14)"><span>Entre 25 % et 40 %</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 5, 20)"><span>Plus de 40 %</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-5" onclick="nextQuestion(5)" disabled>Continuer →</button></div>
-    </div>
+  <div class="copy-block">
+    <h3>Preuve sociale / Chiffres clés</h3>
+    <div class="copy-text">Les entreprises qui structurent leur approche AO augmentent leur taux de succès de <strong>40 % en moyenne</strong> sur 12 mois.
 
-    <!-- Q7 — Pilotage -->
-    <div class="question-block" id="q-6">
-      <div class="q-label">Question 7 · Pilotage — 15 pts</div>
-      <div class="q-question">Avez-vous un suivi structuré de vos AO (pipeline, KPIs, retours d'expérience) ?</div>
-      <div class="options-list">
-        <button class="option-btn" onclick="selectOption(this, 6, 0)"><span>Aucun suivi formalisé</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 6, 5)"><span>Tableau de bord basique</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 6, 10)"><span>Suivi régulier + analyse des AO perdus</span><span class="opt-check"></span></button>
-        <button class="option-btn" onclick="selectOption(this, 6, 15)"><span>Pilotage complet + amélioration continue</span><span class="opt-check"></span></button>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-6" onclick="nextQuestion(6)" disabled>Continuer →</button></div>
-    </div>
+La plupart des entreprises répondent à des appels d'offres sans avoir évalué leur niveau de préparation réelle. Ce diagnostic change ça.</div>
+    <div class="copy-note">À remplacer par de vraies données clients dès que disponibles</div>
+  </div>
 
-    <!-- Q8 — Coordonnées -->
-    <div class="question-block" id="q-7">
-      <div class="q-label">Dernière étape · Vos coordonnées</div>
-      <div class="q-question">Où souhaitez-vous recevoir votre rapport complet ?</div>
-      <div class="contact-form">
-        <div class="form-field">
-          <label>Prénom et nom *</label>
-          <input type="text" id="f-name" placeholder="Jean Dupont" oninput="checkContactForm()">
-        </div>
-        <div class="form-field">
-          <label>Email professionnel *</label>
-          <input type="email" id="f-email" placeholder="jean@entreprise.fr" oninput="checkContactForm()">
-        </div>
-        <div class="form-field">
-          <label>Entreprise *</label>
-          <input type="text" id="f-company" placeholder="Nom de votre entreprise" oninput="checkContactForm()">
-        </div>
-        <div class="form-field">
-          <label>Téléphone <span style="opacity:0.4">(optionnel)</span></label>
-          <input type="tel" id="f-phone" placeholder="+33 6 00 00 00 00">
-        </div>
-      </div>
-      <div class="quiz-nav"><button class="btn-next" id="next-7" onclick="showResults()" disabled>Voir mon score →</button></div>
-    </div>
+  <div class="copy-block">
+    <h3>CTA principal</h3>
+    <div class="copy-text"><strong>Bouton :</strong> → Faire le diagnostic gratuit
 
-  </div><!-- /.quiz-body -->
+<strong>Texte sous le bouton :</strong> 7 questions · 4 minutes · Résultats immédiats · Sans engagement
 
-  <!-- ── RÉSULTATS ── -->
-  <div id="results-screen">
+<strong>Rassurance RGPD :</strong> Vos données restent confidentielles et ne sont jamais revendues.</div>
+  </div>
 
-    <div class="results-header">
-      <div id="score-badge" class="result-profile-badge"></div>
-      <div class="score-reveal">
-        <svg width="160" height="160" viewBox="0 0 160 160">
-          <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="8"/>
-          <circle id="score-arc" cx="80" cy="80" r="68" fill="none" stroke="#1A4FFF" stroke-width="8"
-                  stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427"
-                  style="transition: stroke-dashoffset 1.2s ease"/>
-        </svg>
-        <div class="score-reveal-num" id="score-display">0</div>
-        <div class="score-reveal-sub">/100</div>
-      </div>
-      <h2 class="result-title" id="result-title"></h2>
-      <p class="result-desc" id="result-desc"></p>
-    </div>
+  <div class="copy-block">
+    <h3>Emails de résultats — Objets recommandés</h3>
+    <div class="copy-text"><strong>Score faible (0–40) :</strong>
+"[Prénom], votre score AO est de [X]/100 — voici ce qu'il faut faire en priorité"
 
-    <div class="dimensions-wrap">
-      <div class="dim-title">Détail par dimension</div>
-      <div class="dim-row">
-        <span class="dim-name">Volume AO</span>
-        <div class="dim-track"><div class="dim-bar-fill" id="bar-0"></div></div>
-        <span class="dim-score" id="score-0"></span>
-      </div>
-      <div class="dim-row">
-        <span class="dim-name">Veille & détection</span>
-        <div class="dim-track"><div class="dim-bar-fill" id="bar-1"></div></div>
-        <span class="dim-score" id="score-1"></span>
-      </div>
-      <div class="dim-row">
-        <span class="dim-name">Sélection GO/NOGO</span>
-        <div class="dim-track"><div class="dim-bar-fill" id="bar-2"></div></div>
-        <span class="dim-score" id="score-2"></span>
-      </div>
-      <div class="dim-row">
-        <span class="dim-name">Qualité de rédaction</span>
-        <div class="dim-track"><div class="dim-bar-fill" id="bar-3"></div></div>
-        <span class="dim-score" id="score-3"></span>
-      </div>
-      <div class="dim-row">
-        <span class="dim-name">Taux de succès</span>
-        <div class="dim-track"><div class="dim-bar-fill" id="bar-4"></div></div>
-        <span class="dim-score" id="score-4"></span>
-      </div>
-      <div class="dim-row">
-        <span class="dim-name">Pilotage & suivi</span>
-        <div class="dim-track"><div class="dim-bar-fill" id="bar-5"></div></div>
-        <span class="dim-score" id="score-5"></span>
-      </div>
-    </div>
+<strong>Score intermédiaire (40–70) :</strong>
+"[Prénom], vous êtes à [X]/100 — 3 freins cachés à lever rapidement"
 
-    <div class="reco-wrap">
-      <div class="reco-title">Actions prioritaires</div>
-      <div class="reco-list" id="reco-list"></div>
-    </div>
+<strong>Score avancé (70–100) :</strong>
+"[Prénom], score [X]/100 — comment passer de bon à excellent sur les AO"</div>
+  </div>
 
-    <div class="cta-wrap">
-      <div class="cta-box">
-        <h3 id="cta-title"></h3>
-        <p id="cta-desc"></p>
-        <!-- Remplacez le href par votre lien Calendly -->
-        <a href="https://calendly.com/VOTRE-LIEN" target="_blank" class="cta-rdv" id="cta-btn"></a>
-        <button class="cta-restart" onclick="restartQuiz()">↺ Refaire le diagnostic</button>
-      </div>
-    </div>
+  <div class="copy-block">
+    <h3>Message de relance commerciale J+3 (modèle)</h3>
+    <div class="copy-text">Bonjour [Prénom],
 
-  </div><!-- /#results-screen -->
+J'ai vu que vous avez passé notre diagnostic AO il y a quelques jours — score [X]/100, profil [débutant / intermédiaire / avancé].
 
-</div><!-- /#quiz-wrapper -->
+Sur la base de vos réponses, j'ai identifié 2 ou 3 points qui pourraient avoir un impact direct sur vos prochains appels d'offres.
 
+Est-ce que 30 minutes cette semaine vous conviendrait pour en parler ? Je n'ai rien à vous vendre à ce stade — juste un échange de fond sur votre situation.
 
-<script>
-  // ─── DATA ───────────────────────────────────────
-  const TOTAL_STEPS = 8;
-  const MAX_SCORES  = [0, 15, 15, 15, 20, 20, 15]; // par question (Q1 à Q7)
-  let answers = new Array(TOTAL_STEPS).fill(null);  // points par step
+[Lien Calendly]
 
-  const PROFILES = {
-    low: {
-      badge: 'Profil Débutant',
-      badgeClass: 'badge-low',
-      title: 'Vous partez avec un désavantage structurel',
-      desc: 'Votre organisation n\'est pas encore outillée pour compétir efficacement sur les appels d\'offres. La bonne nouvelle : les marges de progression sont importantes et rapides à activer.',
-      recos: [
-        'Mettre en place une veille AO structurée dès cette semaine',
-        'Créer une grille GO/NOGO simple pour filtrer les opportunités',
-        'Former votre équipe à la rédaction d\'offres différenciées',
-        'Désigner un référent AO dans votre structure',
-      ],
-      ctaTitle: 'Vous avez besoin d\'un accompagnement rapide',
-      ctaDesc: 'Un expert Aconia peut vous aider à structurer votre approche AO en moins de 30 jours. Réservez 30 minutes offertes.',
-      ctaBtn: 'Parler à un expert →',
-      arcColor: '#CC2B2B',
-    },
-    mid: {
-      badge: 'Profil Intermédiaire',
-      badgeClass: 'badge-mid',
-      title: 'Vous avez des bases solides, mais des freins cachés',
-      desc: 'Votre organisation répond aux AO avec régularité, mais des inefficacités dans votre processus vous font perdre des marchés que vous méritez.',
-      recos: [
-        'Affiner vos critères de sélection GO/NOGO pour mieux cibler',
-        'Renforcer la personnalisation de vos offres sur les enjeux décideurs',
-        'Analyser systématiquement vos AO perdus pour progresser',
-        'Structurer un pipeline AO dédié avec indicateurs de suivi',
-      ],
-      ctaTitle: 'Identifiez vos quick-wins prioritaires',
-      ctaDesc: 'Un audit de 30 minutes avec un expert Aconia vous permettra d\'identifier les 2-3 actions qui feront le plus d\'impact.',
-      ctaBtn: 'Voir mes quick-wins →',
-      arcColor: '#E87040',
-    },
-    high: {
-      badge: 'Profil Avancé',
-      badgeClass: 'badge-high',
-      title: 'Vous êtes mature — passez à la vitesse supérieure',
-      desc: 'Votre organisation a une vraie maturité sur les AO. L\'enjeu est de scaler ce qui fonctionne et d\'identifier les 5–10 % de progression qui feront la différence.',
-      recos: [
-        'Identifier les segments AO les plus rentables dans votre marché',
-        'Automatiser votre veille et vos processus de réponse',
-        'Bâtir des partenariats stratégiques pour accéder à des marchés plus larges',
-        'Viser un taux de succès supérieur à 40 % sur les AO ciblés',
-      ],
-      ctaTitle: 'Vous êtes prêt à passer au niveau supérieur',
-      ctaDesc: 'Discutons de votre stratégie AO pour identifier comment optimiser vos performances et scaler vos succès.',
-      ctaBtn: 'Optimiser ma performance →',
-      arcColor: '#00A878',
-    },
-  };
+Cordialement,
+[Prénom Nom]
+[Aconia]</div>
+    <div class="copy-note">Ton : direct, sans jargon, sans sur-promesse. Le score donne de la crédibilité à la démarche.</div>
+  </div>
 
-  // ─── NAVIGATION ──────────────────────────────────
-  function startQuiz() {
-    document.getElementById('homepage').style.display = 'none';
-    document.getElementById('quiz-wrapper').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    updateProgress(0);
-  }
+</section>
 
-  function backToHome() {
-    document.getElementById('quiz-wrapper').style.display = 'none';
-    document.getElementById('results-screen').style.display = 'none';
-    document.getElementById('homepage').style.display = 'block';
-    // Reset
-    answers = new Array(TOTAL_STEPS).fill(null);
-    document.querySelectorAll('.question-block').forEach((b, i) => {
-      b.classList.toggle('active', i === 0);
-      b.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-    });
-    document.querySelectorAll('.btn-next').forEach(btn => btn.disabled = true);
-    updateProgress(0);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function restartQuiz() {
-    document.getElementById('results-screen').style.display = 'none';
-    document.querySelector('.quiz-header').style.display = 'block';
-    document.querySelector('.quiz-body').style.display = 'block';
-    answers = new Array(TOTAL_STEPS).fill(null);
-    document.querySelectorAll('.question-block').forEach((b, i) => {
-      b.classList.toggle('active', i === 0);
-      b.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-    });
-    document.querySelectorAll('.btn-next').forEach(btn => btn.disabled = true);
-    updateProgress(0);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ─── PROGRESS ────────────────────────────────────
-  function updateProgress(stepIndex) {
-    const pct = Math.round((stepIndex / TOTAL_STEPS) * 100);
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('step-label').textContent =
-      stepIndex < TOTAL_STEPS ? `Question ${stepIndex + 1} sur ${TOTAL_STEPS}` : 'Calcul du score…';
-    document.getElementById('step-pct').textContent = pct + ' %';
-  }
-
-  // ─── OPTION SELECTION ─────────────────────────────
-  function selectOption(btn, questionIndex, points) {
-    const block = document.getElementById('q-' + questionIndex);
-    block.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    answers[questionIndex] = points;
-    document.getElementById('next-' + questionIndex).disabled = false;
-  }
-
-  // ─── CONTACT FORM VALIDATION ─────────────────────
-  function checkContactForm() {
-    const name    = document.getElementById('f-name').value.trim();
-    const email   = document.getElementById('f-email').value.trim();
-    const company = document.getElementById('f-company').value.trim();
-    const valid   = name && email.includes('@') && company;
-    document.getElementById('next-7').disabled = !valid;
-  }
-
-  // ─── NEXT QUESTION ───────────────────────────────
-  function nextQuestion(currentIndex) {
-    document.getElementById('q-' + currentIndex).classList.remove('active');
-    const nextIndex = currentIndex + 1;
-    document.getElementById('q-' + nextIndex).classList.add('active');
-    updateProgress(nextIndex);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ─── SHOW RESULTS ────────────────────────────────
-  function showResults() {
-    // Calculate total (skip Q1 which is context only)
-    const total = answers.slice(1, 7).reduce((sum, v) => sum + (v || 0), 0);
-
-    // Determine profile
-    const profile = total <= 40 ? PROFILES.low : total <= 70 ? PROFILES.mid : PROFILES.high;
-
-    // Hide quiz, show results
-    document.querySelector('.quiz-header').style.display = 'none';
-    document.querySelector('.quiz-body').style.display = 'none';
-    const rs = document.getElementById('results-screen');
-    rs.style.display = 'block';
-
-    // Badge
-    const badge = document.getElementById('score-badge');
-    badge.textContent = profile.badge;
-    badge.className = 'result-profile-badge ' + profile.badgeClass;
-
-    // Arc color
-    document.getElementById('score-arc').style.stroke = profile.arcColor;
-
-    // Animate score counter
-    animateCounter('score-display', 0, total, 1200);
-
-    // Animate arc (circumference = 2π×68 ≈ 427)
-    setTimeout(() => {
-      const offset = 427 - (427 * total / 100);
-      document.getElementById('score-arc').style.strokeDashoffset = offset;
-    }, 100);
-
-    // Texts
-    document.getElementById('result-title').textContent = profile.title;
-    document.getElementById('result-desc').textContent  = profile.desc;
-
-    // Dimension bars (Q2–Q7 = indices 1–6)
-    const dimScores  = answers.slice(1, 7);
-    const dimMaxes   = MAX_SCORES.slice(1, 7);
-    dimScores.forEach((score, i) => {
-      const pct = dimMaxes[i] > 0 ? Math.round((score / dimMaxes[i]) * 100) : 0;
-      setTimeout(() => {
-        document.getElementById('bar-' + i).style.width = pct + '%';
-      }, 300 + i * 80);
-      document.getElementById('score-' + i).textContent = (score || 0) + ' / ' + dimMaxes[i];
-    });
-
-    // Recommendations
-    const recoList = document.getElementById('reco-list');
-    recoList.innerHTML = '';
-    profile.recos.forEach(r => {
-      recoList.innerHTML += `<div class="reco-item"><span class="reco-arrow">→</span><p>${r}</p></div>`;
-    });
-
-    // CTA
-    document.getElementById('cta-title').textContent = profile.ctaTitle;
-    document.getElementById('cta-desc').textContent  = profile.ctaDesc;
-    document.getElementById('cta-btn').textContent   = profile.ctaBtn;
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ─── COUNTER ANIMATION ───────────────────────────
-  function animateCounter(id, from, to, duration) {
-    const el    = document.getElementById(id);
-    const start = performance.now();
-    function step(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const ease = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(from + (to - from) * ease);
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-</script>
+<!-- FOOTER -->
+<footer id="contact">
+  <p style="margin-bottom:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;">Aconia — Appels d'offres B2B</p>
+  <p>Ce document est un kit complet prêt à déployer dans Typeform + votre CRM.</p>
+  <p style="margin-top:12px;font-size:0.75rem;">© 2025 Aconia · Tous droits réservés</p>
+</footer>
 
 </body>
 </html>
